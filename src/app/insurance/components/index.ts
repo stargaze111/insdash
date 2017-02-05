@@ -52,7 +52,7 @@ import * as moment from 'moment';
 
 @Component({
     selector: 'insurance-dashboard-widget',
-    templateUrl: './src/app/widgets/dashboard.html',
+    templateUrl: './src/app/insurance/components/dashboard.component.html',
     styleUrls: ['./src/app/insurance/components/dashboard.component.css'],
 })
 

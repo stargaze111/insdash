@@ -1,0 +1,178 @@
+.parent_div_1 {
+  width: 1px;
+  height: 1px;
+  left: 100px
+  margin-left: 100px;
+  margin-right: 2px;
+  float: left;
+}
+.parent_div_2 {
+  width: 100px;
+  height: 80px;  
+  margin-left: 5px;
+  margin-right: 5px;
+  float: left;
+}
+.parent_div_3 { 
+  margin-left: 0px;
+  margin-right: 0px;
+  float: left;
+}
+.parent_div_5 { 
+  margin-left: 80px;
+  margin-right: 0px; 
+  position: initial;
+  float : left; 
+  margin-top:50px;
+  font-size: 90%;
+}
+.parent_div_7 { 
+  margin-left: 50px;
+  margin-right: 0px; 
+  position: initial;
+  float : left; 
+  margin-top:50px;
+  font-size: 90%;
+}
+.parent_div_8 { 
+  margin-left: 40px;
+  margin-right: 0px; 
+  position: initial;
+  float : left; 
+  margin-top:50px;
+  font-size: 90%;
+}
+.parent_div_4 { 
+  margin-left: 50px;
+  margin-right: 0px;   
+}
+.parent_div_6 {
+  width: 1px;
+  height: 1px;
+  left: 4px
+  margin-left: 2px;
+  margin-right: 2px;
+  float: left;
+}
+.child_div_0 {
+  float: left;
+  margin-right: 10px;
+  margin-left: 80px;
+}
+.child_div_1,.child_div_2 {
+  float: left;
+  margin-right: 10px;
+}
+.child_div_3 {
+  float: left;
+  margin-right: 20px;
+}
+.child_div_4 {
+  float: left;
+  margin-right: 50px;
+}
+.txtbox {
+    line-height: 10px;
+    height: 22px;
+    width: 100px;
+    font-size: 12px;
+}
+.txtbox1 {
+    line-height: 10px;
+    height: 23px;
+    width: 150px;
+    font-size: 12px;
+}
+.btn {
+    line-height: 1px;
+    height: 24px;  
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration:none;
+    white-space:nowrap;    
+}
+h1, .h1 {
+    margin-top: 22px;
+    margin-bottom: 11px;
+    margin-left: 450px;
+}
+h2, .h2 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+h3, .h3 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.line1 {
+  position: relative;
+width: 750px,
+        height: 600px,        
+        chartArea: {
+            left: 100px,
+            bottom: 150px,
+            right: 150px,
+            top: 50px
+        }
+}
+.pie1 {
+  position: relative;
+  left: -100px;
+  font-size: 12px;
+}
+.pie2 {
+  position: relative;
+  left: 10px;
+  font-size: 12px;
+}
+.pie3 {
+  position: relative;
+  left: 10px;
+  float:left;
+  font-size: 12px;
+}
+.lbl {
+  position: relative;
+  left: 20px;
+  font-size: 80%;
+  font-size: 12px;
+}
+
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+table.gridtable {
+	font-family: verdana,arial,sans-serif;	
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+	width: 800px;
+}
+table.gridtable1 {
+	width: 1000px;
+}
+
+table.gridtable1 td { 
+    border-spacing-left: 40px;
+    border-spacing-right: 40px;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	font-color: #0000FF;	
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+

@@ -1,0 +1,285 @@
+<h1>Analytics Dashboard</h1>
+<br/>
+<div>
+   <div class='parent_div_1'>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+   </div>
+   <div class ='child_div_0'>
+      <tr>
+         <label><b>Dashboard Type</b></label>
+      </tr>
+      <tr>
+         <select class="txtbox1" [(ngModel)]="chart_type"  (ngModelChange)="selectChartType($event)">
+         <option *ngFor="let x of chart_types" [value]="x.id" [selected]="chart_type.id == x.id">{{x.name}}</option>
+         </select>
+      </tr>
+   </div>
+   <div class ='child_div_1'>
+      <tr>
+         <label><b>Transaction Filters</b></label>
+      </tr>
+      <tr>
+         <select class="txtbox1" [(ngModel)]="search_option" (ngModelChange)="selectSearchOption($event)">
+         <option *ngFor="let x of search_options" [value]="x.id" [selected]="search_option.id == x.id">{{x.name}}</option>
+         </select>
+      </tr>
+   </div>
+   <div class ='child_div_1'>
+      <tr>
+         <label><b>Insurance Type</b></label>
+      </tr>
+      <tr>
+         <select class="txtbox1" [(ngModel)]="insurance_type"  (ngModelChange)="selectInsuranceType($event)">
+         <option *ngFor="let x of insurance_types" [value]="x.id" [selected]="insurance_type.id == x.id">{{x.name}}</option>
+         </select>
+      </tr>
+   </div>
+   <div class ='child_div_1'>
+      <tr>
+         <label><b>Company Name</b></label>
+      </tr>
+      <tr>
+         <select class="txtbox1" [(ngModel)]="company_type"  (ngModelChange)="selectCompanyType($event)">
+         <option *ngFor="let x of company_types" [value]="x.id" [selected]="company_type.id == x.id">{{x.name}}</option>
+         </select>
+      </tr>
+   </div>
+   <div class ='child_div_1'>
+      <tr>
+         <label><b>From Date/Time</b></label>
+      </tr>
+      <tr>
+         <input class="txtbox1" type="datetime-local" name="selectedFromTime" [(ngModel)]='selectedFromTime'>
+      </tr>
+   </div>
+   <div class ='child_div_1'>
+      <tr>
+         <label><b>To Date/Time</b></label>
+      </tr>
+      <tr>
+         <input class="txtbox1" type="datetime-local" name="selectedToTime" [(ngModel)]='selectedToTime'>
+      </tr>
+   </div>
+   <div class ='child_div_1'>
+      <tr>
+         <label><b>Report Id</b></label>
+      </tr>
+      <tr>
+         <input #textbox class="txtbox" type="text" [(ngModel)]='exe_id'>
+      </tr>
+   </div>
+   <div class ='parent_div_6'>
+      <tr>
+         <p></p>
+      </tr>
+      <tr>
+         <td>
+            <button class='btn' (click)="search_clicked(textbox.value)"><b>Search</b></button>
+         </td>
+         <td>
+            <button class='btn' (click)="reset_clicked(textbox.value)"><b>Reset</b></button>
+         </td>
+      </tr>
+   </div>
+   <div class='parent_div_5'>
+      <tr [hidden]="(grandTotalQuotes<=0 || selectedChartId==2)">
+         <td>
+            <h3><b>Full Summary Report</b></h3>
+         </td>
+      </tr>
+      <tr [hidden]="(grandTotalQuotes<=0 || selectedChartId==2)">
+         <td>
+            <p><b>&nbsp;</b></p>
+         </td>
+      </tr>
+      <table class="table.gridtable1" [hidden]="(grandTotalQuotes<=0 || selectedChartId==2)">
+         <tr>
+            <td>
+               <b>Date</b>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <b>Total Quotes</b>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <b>Total Policies</b>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <b>Total Transactions</b>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <b>Total Policy Amount</b>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <p><b><font color="blue">{{globalCurrentTime}}</font></b></p>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <p><b><font color="blue">{{grandTotalQuotes}}</font></b></p>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <p><b><font color="blue">{{grandTotalPolicies}}</font></b></p>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <p><b><font color="blue">{{grandTotalQuotes+grandTotalPolicies}}</font></b></p>
+            </td>
+            <td>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+            <td>
+               <p><b><font color="blue">{{grandTotalRevenue}}</font></b></p>
+            </td>
+         </tr>
+      </table>
+      <tr [hidden]="(grandTotalQuotes<=0 || selectedChartId==2)">
+         <td>
+            <p><b>&nbsp;</b></p>
+         </td>
+      </tr>
+   </div>
+   <div class='parent_div_4'>
+      <tr *ngIf="grandTotalQuotes<=0 && isLoaded">
+         <br/>
+         <br/>
+         <font color="red">&nbsp;</font>
+      </tr>
+      <tr [hidden]="(grandTotalQuotes<=0 || selectedChartId==2)">
+         <td>
+            <div class='pie2' id="summary_pie_chart"></div>
+         </td>
+         <td>
+            <div class='pie2' id="ins_pie_chart"></div>
+         </td>
+         <td>
+            <div class='pie2' id="company_pie_chart"></div>
+         </td>
+      </tr>
+      <tr [hidden]="grandTotalQuotes<=0 || selectedChartId==2">
+         <td>
+            <div class='pie2' id="ins_rev_pie_chart"></div>
+         </td>
+         <td>
+            <div class='pie2' id="company_rev_pie_chart"></div>
+         </td>
+      </tr>
+      <div class='parent_div_7'>
+         <tr [hidden]="(selectedChartId==1 || selectedChartId==-1)">
+            <td>
+               <h3><b>Recent Transactions Report</b></h3>
+            </td>
+         </tr>
+         <tr [hidden]="(selectedChartId==1 || selectedChartId==-1)">
+            <td>
+               <p><b>&nbsp;</b></p>
+            </td>
+         </tr>
+         <table class="table.gridtable1"  [hidden]="(selectedChartId==1 || selectedChartId==-1)">
+            <tr>
+               <td>
+                  <b>Date</b>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <b>Total Quotes</b>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <b>Total Policies</b>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <b>Total Transactions</b>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <b>Total Policy Amount</b>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <p><b><font color="blue">{{globalCurrentTime}}</font></b></p>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <p><b><font color="blue">{{totalQuotes}}</font></b></p>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <p><b><font color="blue">{{totalPolicies}}</font></b></p>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <p><b><font color="blue">{{totalQuotes+totalPolicies}}</font></b></p>
+               </td>
+               <td>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               </td>
+               <td>
+                  <p><b><font color="blue">{{totalPolicyAmount.toFixed(2)}}</font></b></p>
+               </td>
+            </tr>
+         </table>
+         <tr [hidden]="(selectedChartId==1 || selectedChartId==-1)">
+            <td>
+               <p><b>&nbsp;</b></p>
+            </td>
+         </tr>
+      </div>
+   </div>
+   <div class='parent_div_8'>
+   <tr>
+   <tr [hidden]="(totalQuotes<=0 || selectedChartId==1 || selectedChartId==-1)">
+      <td>
+         <div id="line_chart"></div>
+      </td>
+   </tr>
+   <tr [hidden]="(totalQuotes<=0 || selectedChartId==1 || selectedChartId==-1)">
+      <td [hidden]="(totalQuotes<=0)">
+         <div class='pie3' id="filtered_pie_chart"></div>
+         <div class='pie3' id="filtered_ins_pie_chart"></div>
+         <div class='pie3 child_div_1' id="filtered_company_pie_chart"></div>
+      </td>
+   </tr>
+   <tr [hidden]="(totalQuotes<=0 || selectedChartId==1 || selectedChartId==-1)">
+      <td [hidden]="(totalQuotes<=0)">
+         <div class='pie3 child_div_1' id="filtered_ins_rev_pie_chart"></div>
+         <div class='pie3 child_div_1' id="filtered_company_rev_pie_chart"></div>
+      </td>
+   </tr>
+   </div>
+</div>

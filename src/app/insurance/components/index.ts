@@ -58,7 +58,7 @@ import * as moment from 'moment';
 
 export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 
-    refreshFrequency = 600000;
+    refreshFrequency = 5000;
     grandTotalConversion ="0%";
     totalConversion = "0%";
     globalCurrentTime:string;

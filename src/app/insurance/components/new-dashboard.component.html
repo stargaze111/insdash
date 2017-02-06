@@ -28,8 +28,7 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- Menu -->
-            <div class="menu container-fluid">
-<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 385px;"><ul class="list" style="height: 385px; overflow: hidden; width: auto;">
+            <div class="menu">
                     <li class="header"></li>
                     <li class="active">
                         <a href="index.html" class="toggled waves-effect waves-block">
@@ -89,11 +88,11 @@
                                 </ul>
                             </li>
                 </ul>
-            </div>
-           </div>
             <div class="pull-right switch panel-btn" [hidden]="(selectedOptionId==0&&selectedChartId==0)&&selectedCompanyId==0&&selectedInsuranceId==0">
 		   	   <button class="btn btn-block bg-pink waves-effect icon" type="submit" (click)="reset_clicked()"><i class="material-icons">clear_all</i>RESET</button>
 			</div>
+           </div>
+
             <!-- #Menu -->
             <!-- Footer -->
         </aside>

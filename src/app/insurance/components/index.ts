@@ -150,6 +150,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     ]);
 
     linechartoptions = {
+    chartArea :{bottom:100},
         hAxis: {
             title: 'Time'
         },

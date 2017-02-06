@@ -46,7 +46,7 @@
                         <ul id="dashboard_menu"  class="ml-menu">
                             <li id="dashboard0" (click)="selectChartType(0)">
                                 <a href="javascript:void(0);">
-                                <i class="material-icons">multiline_chart</i>
+                                <i class="material-icons">trending_up</i>
                                     <span>Current</span>
                                 </a>
                             </li>
@@ -102,7 +102,7 @@
         <div class="container-fluid">
         <div class="container-fluid">
             <div class="block-header">
-                <h2 class="pull-left">{{chart_type.name.toUpperCase()}} DASHBOARD</h2>
+                <h2 class="pull-left">{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</h2>
                 <h2 class="pull-left" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{search_options[selectedOptionId].name.toUpperCase()}}</h2>
                 <h2 class="pull-left" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</h2>
                 <h2 class="pull-left" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</h2>

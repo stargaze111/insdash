@@ -20,6 +20,9 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="javascript:void(0);">ANALYTICS DASHBOARD</a>
+                <div class="pull-right switch panel-btn" [hidden]="(selectedOptionId==0&&selectedChartId==0)&&selectedCompanyId==0&&selectedInsuranceId==0">
+				      <button class="btn btn-block bg-pink waves-effect icon" type="submit" (click)="reset_clicked()"><i class="material-icons">clear_all</i>RESET</button>
+			    </div>
             </div>
         </div>
     </nav>
@@ -106,9 +109,6 @@
                 <h2 class="pull-left" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</h2>
                 <h2 class="pull-left" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</h2>
             </div>
-            <div class="pull-right switch panel-btn" [hidden]="(selectedOptionId==0&&selectedChartId==0)&&selectedCompanyId==0&&selectedInsuranceId==0">
-			   <button class="btn btn-block bg-pink waves-effect icon" type="submit" (click)="reset_clicked()"><i class="material-icons">clear_all</i>RESET</button>
-			</div>
 			<div class="pull-right">
 				<div class="switch panel-switch-btn" [hidden]="selectedChartId==1">
 					<span class="m-r-10 font-12">REAL TIME</span>

@@ -4,6 +4,31 @@
   <title>Dashboard</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="widgets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="widgets/plugins/node-waves/waves.css" rel="stylesheet" />
+
+
+    <!-- Animation Css -->
+    <link href="widgets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="widgets/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="widgets/css/themes/all-themes.css" rel="stylesheet" />
+
+        <!-- Custom Css -->
+    <link href="widgets/css/style.css" rel="stylesheet">
 
   <!-- Polyfill(s) for older browsers -->
      <!-- Polyfill(s) for older browsers -->
@@ -23,9 +48,71 @@
   <script>
     System.import('src').catch(function(err){ console.error(err); });
   </script>
+
+
+<!-- Jquery Core Js -->
+    <script src="widgets/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="widgets/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="widgets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="widgets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="widgets/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="widgets/plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="widgets/plugins/raphael/raphael.min.js"></script>
+    <script src="widgets/plugins/morrisjs/morris.js"></script>
+
+    <!-- ChartJs -->
+    <script src="widgets/plugins/chartjs/Chart.bundle.js"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="widgets/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="widgets/plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="widgets/plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="widgets/plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="widgets/plugins/flot-charts/jquery.flot.time.js"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="widgets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+    <!-- Custom Js -->
+    <script src="widgets/js/admin.js"></script>
+    <script src="widgets/js/pages/index.js"></script>
+
+    <!-- Demo Js -->
+    <script src="widgets/js/demo.js"></script>
+
+
 </head>
 
 <body>
-<my-app>Loading...</my-app>
+
+
+<my-app>    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div></my-app>
 </body>
 </html>

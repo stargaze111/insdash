@@ -1,0 +1,264 @@
+
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="javascript:void(0);">ANALYTICS DASHBOARD</a>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- Menu -->
+            <div class="menu">
+<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 385px;"><ul class="list" style="height: 385px; overflow: hidden; width: auto;">
+                    <li class="header"></li>
+                    <li class="active">
+                        <a href="index.html" class="toggled waves-effect waves-block">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleDashboardMenu(this)">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboards</span>
+                        </a>
+                        <ul id="dashboard_menu"  class="ml-menu">
+                            <li id="dashboard0" (click)="selectChartType(0)">
+                                <a href="javascript:void(0);">
+                                <i class="material-icons">multiline_chart</i>
+                                    <span>Current</span>
+                                </a>
+                            </li>
+                            <li id="dashboard1" (click)="selectChartType(1)">
+                                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleHistoryMenu(this)">
+                                <i class="material-icons">history</i>
+                                    <span>History</span>
+                                </a>
+                                <ul id="history_menu"  class="ml-menu">
+                                   <li *ngFor="let search_option of search_options let i=index" id="history{{i}}" (click)="selectSearchOption(search_option.id)">
+								   		 <a href="javascript:void(0);">{{ search_option.name }}</a>
+									</li>
+                                </ul>
+                            </li>
+ </ul>
+</li>
+                            <li>
+                                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleInsuranceMenu(this)">
+                                <i class="material-icons">
+                                verified_user
+                                </i>
+                                    <span>Insurance</span>
+                                </a>
+                                <ul id="insurance_menu"  class="ml-menu">
+                                   <li *ngFor="let insurance_type of insurance_types let i=index" id="insurance{{i}}" (click)="selectInsuranceType(insurance_type.id)">
+								   		 <a href="javascript:void(0);">{{ insurance_type.name }}</a>
+									</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleCompanyMenu(this)">
+                                <i class="material-icons">
+                                business
+                                </i>
+                                    <span>Company</span>
+                                </a>
+                                <ul id="company_menu" class="ml-menu">
+									<li *ngFor="let company_type of company_types let i=index" id="company{{i}}" (click)="selectCompanyType(company_type.id); $event.style.background-color='blue';">
+										<a href="javascript:void(0);">{{ company_type.name }}</a>
+									</li>
+                                </ul>
+                            </li>
+                </ul>
+            </div>
+           </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2 class="pull-left">{{chart_type.name.toUpperCase()}} DASHBOARD</h2>
+                <h2 class="pull-left" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{search_options[selectedOptionId].name.toUpperCase()}}</h2>
+                <h2 class="pull-left" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</h2>
+                <h2 class="pull-left" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</h2>
+            </div>
+			<div class="pull-right">
+				<div class="switch panel-switch-btn" [hidden]="selectedChartId==1">
+					<span class="m-r-10 font-12">REAL TIME</span>
+					<label>OFF<input type="checkbox" id="realtime" checked (click)="selectLive()"><span class="lever switch-col-cyan"></span>ON</label>
+				</div>
+				<div [hidden]="selectedChartId==0">
+					<span class="m-r-10 font-12">&nbsp;</span>
+					<label>&nbsp;</label>
+				</div>
+			</div>
+</div>
+            <!-- Widgets -->
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">attach_money</i>
+                        </div>
+                        <div class="content" >
+                            <div class="text">REVENUE</div>
+                            <div *ngIf="selectedChartId==0" class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">{{grandTotalRevenue | number : fractionSize}}</div>
+                            <div *ngIf="selectedChartId==1" class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">{{totalPolicyAmount | number : fractionSize}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">forum</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">QUOTES</div>
+                            <div *ngIf="selectedChartId==0" class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">{{grandTotalQuotes | number : fractionSize}}</div>
+                            <div *ngIf="selectedChartId==1" class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">{{totalQuotes | number : fractionSize}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-cyan hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">verified_user</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">POLICIES</div>
+                            <div *ngIf="selectedChartId==0" class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">{{grandTotalPolicies | number : fractionSize}}</div>
+                            <div *ngIf="selectedChartId==1" class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">{{totalPolicies | number : fractionSize}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-orange hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">pie_chart</i>
+                        </div>
+                        <div class="content" [hidden]="selectedChartId==1">
+                            <div class="text">CONVERSIONS</div>
+                            <div *ngIf="selectedChartId==0" class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20">{{grandTotalConversion}}</div>
+                            <div *ngIf="selectedChartId==1" class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20">{{totalConversion}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Widgets -->
+            <!-- CPU Usage -->
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>TRANSACTIONS</h2>
+                        </div>
+                        <div class="body">
+                            <div id="line_chart" class="dashboard-flot-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #END# CPU Usage -->
+            <div class="row clearfix">
+                <!-- Task Info -->
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header">
+							<h2>COMPANY / REVENUE</h2>
+							<ul class="header-dropdown m-r--5">
+							</ul>
+						</div>
+                        <div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+                            <div id="company_rev_pie_chart"  class="dashboard-donut-chart"></div>
+                        </div>
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0 )">
+                            <div id="filtered_company_rev_pie_chart" class="dashboard-donut-chart"></div>
+                        </div>
+					</div>
+				</div>
+
+                <!-- #END# Latest Social Trends -->
+                <!-- Answered Tickets -->
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>INSURANCE / REVENUE</h2>
+						<ul class="header-dropdown m-r--5">
+						</ul>
+					</div>
+					<div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+						<div id="ins_rev_pie_chart"  class="dashboard-donut-chart"></div>
+					</div>
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)">
+                            <div id="filtered_ins_rev_pie_chart" class="dashboard-donut-chart"></div>
+                        </div>
+				</div>
+</div>
+                <!-- #END# Answered Tickets -->
+            </div>
+
+            <div class="row clearfix">
+                <!-- #END# Task Info -->
+                <!-- Task Info -->
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header">
+							<h2>COMPANY / POLICIES</h2>
+							<ul class="header-dropdown m-r--5">
+							</ul>
+						</div>
+						<div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+							<div id="company_pie_chart" class="dashboard-donut-chart"></div>
+						</div>
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)">
+                            <div id="filtered_company_pie_chart" class="dashboard-donut-chart"></div>
+                        </div>
+					</div>
+				</div>
+                <!-- #END# Task Info -->
+                <!-- Browser Usage -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>INSURANCE / POLICIES</h2>
+                            <ul class="header-dropdown m-r--5">
+                            </ul>
+                        </div>
+                        <div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+                            <div id="ins_pie_chart" class="dashboard-donut-chart"></div>
+                        </div>
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)">
+                            <div id="filtered_ins_pie_chart" class="dashboard-donut-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Browser Usage -->
+            </div>
+        </div>
+    </section>

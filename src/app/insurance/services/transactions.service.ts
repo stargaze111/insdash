@@ -28,7 +28,13 @@ export class SearchInsuranceTransactionsService {
      if(fromMilliseconds>=0){
         fromMilliSecondsStr = fromMilliseconds+"";
      }
-     
+          if(selectedInsurance!=null&&selectedInsurance.toUpperCase()=='ALL'){
+          	selectedInsurance="";
+          }
+          if(selectedCompany!=null&&selectedCompany.toUpperCase()=='ALL'){
+               selectedCompany="";
+          }
+
      let body:string = JSON.stringify( {"transactionsRequired":"true","executionId":exeId,"fromMilliseconds":fromMilliSecondsStr,"toMilliseconds":toMilliSecondsStr,"recordLimit":"20000","insuranceType":selectedInsurance,"company":selectedCompany} ); 
      console.log('requesting transactions data...');   
      return this.http.post(this.transactionsUrl, body, options)
@@ -42,6 +48,12 @@ export class SearchInsuranceTransactionsService {
 
 	  let headers = new Headers({ 'Content-Type': 'application/json','client_id':this.client_id });
 	  let options = new RequestOptions({headers: headers});     
+     if(selectedInsurance!=null&&selectedInsurance.toUpperCase()=='ALL'){
+     	selectedInsurance="";
+     }
+     if(selectedCompany!=null&&selectedCompany.toUpperCase()=='ALL'){
+          selectedCompany="";
+     }
 
 	     let body:string = JSON.stringify( {"transactionsRequired":"false","executionId":exeId,"insuranceType":selectedInsurance,"company":selectedCompany} ); 
  

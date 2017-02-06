@@ -52,13 +52,15 @@ import * as moment from 'moment';
 
 @Component({
     selector: 'insurance-dashboard-widget',
-    templateUrl: './src/app/insurance/components/dashboard.component.html',
-    styleUrls: ['./src/app/insurance/components/dashboard.component.css'],
+    templateUrl: './src/app/insurance/components/new-dashboard.component.html'
 })
 
 
 export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 
+    refreshFrequency = 600000;
+    grandTotalConversion ="0%";
+    totalConversion = "0%";
     globalCurrentTime:string;
     grandTotalRevenue=0;
     grandTotalQuotes =0;
@@ -66,14 +68,14 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     totalPolicyAmount=0;
     totalQuotes=0;
     totalPolicies=0;
-    selectedOptionId = -1;
-    selectedCompanyId = -1;
-    selectedInsuranceId = -1;
-    selectedChartId = -1;
+    selectedOptionId = 0;
+    selectedCompanyId = 0;
+    selectedInsuranceId = 0;
+    selectedChartId = 0;
     isLoaded=false;
     timerSubscription = null;
     toggoleShowHide = "visible";
-    live = false;
+    live = true;
     exe_id = "";
     typesSummary : InsuranceTypesSummary[];
     companiesSummary : CompaniesSummary[];
@@ -148,15 +150,6 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     ]);
 
     linechartoptions = {
-        'width': 1050,
-        'height': 500,
-        'bars': 'vertical',        
-        'chartArea': {
-            'left': 100,
-            'bottom': 175,
-            'right': 150,
-            'top': 50
-        },
         hAxis: {
             title: 'Time'
         },
@@ -164,97 +157,67 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             title: 'Count'
         }
     }
-    pieChartOptions1 = {
-        'width': 340,
-        'height': 200,
-        title: 'Quotes & Policies',        
-        'chartArea': {
-	            'left': 30,
-	            'bottom': 20,
-	            'right': 40,
-	            'top': 20
-        },
-    };    
 
-    pieChartOptions2 = {
-        'width': 340,
-        'height': 200,
-        title: 'Quotes & Policies',        
-        'chartArea': {
-	            'left': 30,
-	            'bottom': 20,
-	            'right': 40,
-	            'top': 30
-        },
-    };    
-
-    pieChartOptions3 = {
-        'width': 340,
-        'height': 200,
-        title: 'Insurance & Policies',        
-        'chartArea': {
-	            'left': 30,
-	            'bottom': 20,
-	            'right': 40,
-	            'top': 30
-        },
-    }; 
+    toggleDashboardMenu(value){
+    let style = (<HTMLInputElement>document.getElementById("dashboard_menu")).style;
+    if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
+      style.display='block';
+    }else {
+      style.display='none';
+    }
+      
+    }
     
-    pieChartOptions4 = {
-        'width': 340,
-        'height': 200,
-        title: 'Insurance & Amount',        
-        'chartArea': {
-	            'left': 30,
-	            'bottom': 20,
-	            'right': 40,
-	            'top': 30
-        },
-    };    
+    toggleHistoryMenu(value){
+    let style = (<HTMLInputElement>document.getElementById("history_menu")).style;
+    if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
+      style.display='block';
+    }else {
+      style.display='none';
+    }
+      
+    }    
     
-	pieChartOptions5 = {
-	    'width': 340,
-	    'height': 200,
-	    title: 'Company & Policies',
-	    'chartArea': {
-		    'left': 30,
-		    'bottom': 20,
-		    'right': 40,
-		    'top': 30
-	    },
-	}; 
-
-	pieChartOptions6 = {
-	    'width': 340,
-	    'height': 200,
-	    title: 'Company & Amount',        
-	    'chartArea': {
-		    'left': 30,
-		    'bottom': 20,
-		    'right': 40,
-		    'top': 30
-	    },
-    }; 
+    toggleInsuranceMenu(value){
+    let style = (<HTMLInputElement>document.getElementById("insurance_menu")).style;
+    if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
+      style.display='block';
+    }else {
+      style.display='none';
+    }
+    
+    }   
+    
+    toggleCompanyMenu(value){
+    let style = (<HTMLInputElement>document.getElementById("company_menu")).style;
+    
+    if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
+      style.display='block';
+    }else {
+      style.display='none';
+    }
+     
+    }      
 
     drawFilteredGraph() {
 
         this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createLineChart(document.getElementById('line_chart'));
         this.dashboard_googlechart1.chart.draw(this.filteredLineChartData, this.linechartoptions);
 
-        this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_pie_chart'));
-        this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, this.pieChartOptions1);
+       // this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_pie_chart'));
+       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, {});
         
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, this.pieChartOptions3);
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, {});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, this.pieChartOptions4);
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, {});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, this.pieChartOptions5);
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, {});
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, this.pieChartOptions6);        
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, {});        
 
 
     }
@@ -262,21 +225,21 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     drawSummaryGraph() {
     
            
-            this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('summary_pie_chart'));
-            this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, this.pieChartOptions2);
+            //this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('summary_pie_chart'));
+           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, {});
             
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, this.pieChartOptions3);
+	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, {});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, this.pieChartOptions4);
+	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, {});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, this.pieChartOptions5);
+	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, {});
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, this.pieChartOptions6);
+	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, {});
             
     }
 
@@ -293,66 +256,93 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         
         //initialize dropdowns
         this.initializeDropdowns();
-        // Load comments
+
         
         this.triggerSearch();
-       
-        setInterval(() => {
-            this.date = new Date();
-        }, 1000);
 
 
     }
 
     initializeDropdowns() {
         this.search_options = Array < InsuranceDashboardSearchOption > ();
-        this.search_options.push(new InsuranceDashboardSearchOption(-1, 'Please select'));
-        this.search_options.push(new InsuranceDashboardSearchOption(1, 'Live Transactions'));
-        this.search_options.push(new InsuranceDashboardSearchOption(2, 'Last 5 minutes'));
-        this.search_options.push(new InsuranceDashboardSearchOption(3, 'Last 10 minutes'));
-        this.search_options.push(new InsuranceDashboardSearchOption(4, 'Last 30 minutes'));
-        this.search_options.push(new InsuranceDashboardSearchOption(5, 'Last 1 hour'));
-        this.search_options.push(new InsuranceDashboardSearchOption(6, 'Last 3 hours'));
-        this.search_options.push(new InsuranceDashboardSearchOption(7, 'Last 6 hours'));
-        this.search_options.push(new InsuranceDashboardSearchOption(8, 'Last 12 hours'));
-        this.search_options.push(new InsuranceDashboardSearchOption(9, 'Last 24 hours'));
-        this.search_options.push(new InsuranceDashboardSearchOption(10, 'Last 1 week'));
-        this.search_options.push(new InsuranceDashboardSearchOption(11, 'Last 1 month'));
-        this.search_option = new InsuranceDashboardSearchOption(-1, ' ');
+        this.search_options.push(new InsuranceDashboardSearchOption(0, 'Last 5 minutes'));
+        this.search_options.push(new InsuranceDashboardSearchOption(1, 'Last 10 minutes'));
+        this.search_options.push(new InsuranceDashboardSearchOption(2, 'Last 30 minutes'));
+        this.search_options.push(new InsuranceDashboardSearchOption(3, 'Last 1 hour'));
+        this.search_options.push(new InsuranceDashboardSearchOption(4, 'Last 3 hours'));
+        this.search_options.push(new InsuranceDashboardSearchOption(5, 'Last 6 hours'));
+        this.search_options.push(new InsuranceDashboardSearchOption(6, 'Last 12 hours'));
+        this.search_options.push(new InsuranceDashboardSearchOption(7, 'Last 24 hours'));
+        this.search_options.push(new InsuranceDashboardSearchOption(8, 'Last 1 week'));
+        this.search_options.push(new InsuranceDashboardSearchOption(9, 'Last 1 month'));
+        this.search_option = new InsuranceDashboardSearchOption(0, 'Last 5 minutes');
 
         this.insurance_types = Array < InsuranceDashboardInsuranceType > ();
-	this.insurance_types.push(new InsuranceDashboardInsuranceType(-1, 'All'));
+	this.insurance_types.push(new InsuranceDashboardInsuranceType(0, 'All'));
 	this.insurance_types.push(new InsuranceDashboardInsuranceType(1, 'Ride Sharing'));
 	this.insurance_types.push(new InsuranceDashboardInsuranceType(2, 'Food Delivery'));
         this.insurance_types.push(new InsuranceDashboardInsuranceType(3, 'Rental Car'));
         this.insurance_types.push(new InsuranceDashboardInsuranceType(4, 'Holiday Travel'));
-        this.insurance_type = new InsuranceDashboardInsuranceType(-1, ' ');
+        this.insurance_type = new InsuranceDashboardInsuranceType(0, 'All');
 
         this.company_types = Array < InsuranceDashboardCompanyType > ();
-	this.company_types.push(new InsuranceDashboardCompanyType(-1, 'All'));
+	this.company_types.push(new InsuranceDashboardCompanyType(0, 'All'));
 	this.company_types.push(new InsuranceDashboardCompanyType(1, 'Tuber'));
 	this.company_types.push(new InsuranceDashboardCompanyType(2, 'Delivermoo'));
         this.company_types.push(new InsuranceDashboardCompanyType(3, 'GoGet'));
         this.company_types.push(new InsuranceDashboardCompanyType(4, 'Menulog'));
         this.company_types.push(new InsuranceDashboardCompanyType(5, 'SMS Insurance'));
-        this.company_type = new InsuranceDashboardCompanyType(-1, ' ');
+        this.company_type = new InsuranceDashboardCompanyType(0, 'All');
         
         this.chart_types = Array < InsuranceDashboardChartType > ();
-	this.chart_types.push(new InsuranceDashboardChartType(-1, 'Please select'));
-	this.chart_types.push(new InsuranceDashboardChartType(1, 'Full Summary'));
-	this.chart_types.push(new InsuranceDashboardChartType(2, 'Recent Transactions'));
-	this.chart_types.push(new InsuranceDashboardChartType(3, 'All'));
-        this.chart_type = new InsuranceDashboardChartType(-1, ' ');        
+	this.chart_types.push(new InsuranceDashboardChartType(0, ' Main'));
+	this.chart_types.push(new InsuranceDashboardChartType(1, 'History'));
+        this.chart_type = new InsuranceDashboardChartType(0, 'Main');        
 
     }
     
     
-
+    
+    selectLive() {
+    
+    this.live=!this.live;
+    console.log("button triggered : live : "+this.live);
+    
+    this.triggerSearch(); 
+    
+    } 
+ 
 
     selectInsuranceType(selectedInsurance) {
+    
+    try {
+            var style = document.getElementById("insurance" + selectedInsurance).style;
+            if (style != null) {
+                if (style.backgroundColor == "") {
+                    style.backgroundColor = "#D3D3D3";
+                    var noOfInsurances = this.insurance_types.length;
+                    for (var y = 0; y < noOfInsurances; y++) {
+                        if (y == selectedInsurance) {
+                            continue;
+                        }
+                        var style1 = document.getElementById("insurance" + y).style;
+                        if (style1 != null) {
+                            style1.backgroundColor = "";
+                        }
+                    }
+                }
+                else {
+                    style.backgroundColor = "";
+                    selectedInsurance = 0;
+                }
+            }
+        }
+        catch (e) {
+    }
+    
     this.selectedInsuranceId = selectedInsurance;
     if(selectedInsurance!=-1){         
-        console.log('insurance: ' + JSON.stringify(selectedInsurance)+":"+this.insurance_types[parseInt(selectedInsurance)].name);
+        console.log('insurance: ' + JSON.stringify(selectedInsurance)+":"+this.insurance_types[selectedInsurance].name);
         
     }else{
         console.log('None selected');
@@ -360,32 +350,92 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
           this.triggerSearch(); 
     }
     
-    selectCompanyType(selectedCompany) {
-    this.selectedCompanyId = selectedCompany;
-    if(selectedCompany!=-1){
-        console.log('company: ' + JSON.stringify(selectedCompany)+":"+this.company_types[parseInt(selectedCompany)].name);
-        
-    }else{
-            console.log('None selected');
+ selectCompanyType(selectedCompany)
+{
+    try {
+        var style = document.getElementById("company" + selectedCompany).style;
+        if (style != null) {
+            if (style.backgroundColor == "") {
+                style.backgroundColor = "#D3D3D3";
+                var noOfCompanies = this.company_types.length;
+                for (var y = 0; y < noOfCompanies; y++) {
+                    if (y == selectedCompany) {
+                        continue;
+                    }
+                    var style1 = document.getElementById("company" + y).style;
+                    if (style1 != null) {
+                        style1.backgroundColor = "";
+                    }
+                }
+            }
+            else {
+                style.backgroundColor = "";
+                selectedCompany = 0;
+            }
+        }
     }
-       this.triggerSearch();     
-    }    
+    catch (e) {
+    }
+    console.log('Inside select company ');
+    this.selectedCompanyId = selectedCompany;
+    if (selectedCompany != -1) {
+        console.log('company: ' + JSON.stringify(selectedCompany) + ":" + this.company_types[selectedCompany].name);
+    }
+    else {
+        console.log('None selected');
+    }
+    this.triggerSearch();
+}
+  
 
     selectChartType(selectedChart) {
+    
         this.selectedChartId = selectedChart;
         if(selectedChart!=-1){         
-            console.log('chart: ' + JSON.stringify(selectedChart)+":"+this.chart_types[parseInt(selectedChart)].name);
-            //this.triggerSearch();
+            console.log('chart: ' + JSON.stringify(selectedChart)+":"+this.chart_types[selectedChart].name);
+            if(selectedChart==1){
+              this.live=false;
+            }
+            this.triggerSearch();
         }else{
             console.log('None selected');
-        }               
+        }  
+        
+        
+        
     }
 
     selectSearchOption(selectedOption) {
+    
+            try {
+                    var style = document.getElementById("history" + selectedOption).style;
+                    if (style != null) {
+                        if (style.backgroundColor == "") {
+                            style.backgroundColor = "#D3D3D3";
+                            var noOfOptions = this.search_options.length;
+                            for (var y = 0; y < noOfOptions; y++) {
+                                if (y == selectedOption) {
+                                    continue;
+                                }
+                                var style1 = document.getElementById("history" + y).style;
+                                if (style1 != null) {
+                                    style1.backgroundColor = "";
+                                }
+                            }
+                        }
+                        else {
+                            style.backgroundColor = "";
+                            selectedOption = 0;
+                        }
+                    }
+                }
+                catch (e) {
+    }
+    
     this.selectedOptionId = parseInt(selectedOption);
     this.triggerSearch();
     if(selectedOption!=-1){
-       console.log('selected: ' + JSON.stringify(selectedOption)+":"+this.search_options[parseInt(selectedOption)].name);            
+       console.log('selected: ' + JSON.stringify(selectedOption)+":"+this.search_options[selectedOption].name);            
       }else{
             console.log('None selected');
             this.unsubscribeToData();
@@ -400,11 +450,11 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	  this.totalPolicyAmount=0; 
 	  this.totalQuotes=0;
 	  this.totalPolicies=0;
-	  this.selectedOptionId = 2;
-	  this.selectedCompanyId = -1;
-	  this.selectedInsuranceId = -1;
-	  this.selectedChartId = -1;
-	  this.live = false;
+	  this.selectedOptionId = 0;
+	  this.selectedCompanyId = 0;
+	  this.selectedInsuranceId = 0;
+	  this.selectedChartId = 0;	  
+	  this.live = true;
           this.exe_id = "";
           this.search_option = new InsuranceDashboardSearchOption(-1, '');
           this.insurance_type = new InsuranceDashboardInsuranceType(-1, '');
@@ -439,11 +489,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
    
        console.log('selectedOption :'+this.selectedOptionId);
        console.log('fromMilliseconds :'+this.fromMilliseconds);
-   
-       if(this.selectedOptionId==-1){
-	      this.selectedOptionId=2;
-	      this.search_option = new InsuranceDashboardSearchOption(2, 'Last 5 minutes');
-	}
+
    	let selectedInsurance = "";
    	let selectedCompany = "";
    
@@ -473,15 +519,13 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	 }
 	 
 
-   	 this.searchTransactions(this.selectedOptionId,0, fromTimeInMilliSeconds,toTimeInMilliSeconds,0,selectedInsurance,selectedCompany,null);
+   	 this.searchTransactions(this.selectedOptionId,fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,null);
          console.log('Subscribe for periodically refreshing data');
         
    	  
    	}else{
    	
-   	
-   	
-           
+   	   	          
            //start live dashboard with filters
    	   var currentDate = new Date();
    	    currentDate.setSeconds(0);
@@ -493,92 +537,92 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
    	    let dataPoints1 = 0;
    	    let dataPoints2 = 60;   	    
    
-   	    if (this.selectedOptionId == 1) {
+   	    if (this.live) {
    		this.fromMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * (2) * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000*1));
-   		this.live = true;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Subscribe for periodically refreshing data');
-   	    }else if (this.selectedOptionId == 2) {
+   	    }else if (this.selectedOptionId == 0) {
    		this.fromMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 5 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000*5));
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 3) {
+   	    } else if (this.selectedOptionId == 1) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 10 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 10));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 4) {
+   	    } else if (this.selectedOptionId == 2) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 30 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 30));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 5) {
+   	    } else if (this.selectedOptionId == 3) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 60 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 60));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 6) {
+   	    } else if (this.selectedOptionId == 4) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 180 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 180));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 7) {
+   	    } else if (this.selectedOptionId == 5) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 360 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 360));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 8) {
+   	    } else if (this.selectedOptionId == 6) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 720 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 720));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 9) {
+   	    } else if (this.selectedOptionId == 7) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 1440 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 1440));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
-   	    } else if (this.selectedOptionId == 10) {
+   	    } else if (this.selectedOptionId == 8) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 10080 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 10080));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
    
-   	    } else if (this.selectedOptionId == 11) {
+   	    } else if (this.selectedOptionId == 9) {
    		this.toMilliseconds = currentTimeInMilliSeconds + "";
    		dataPointFactor = dataPointFactor * 300080 * 1000;
    		fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000 * 300080));
    		this.fromMilliseconds = fromTimeInMilliSeconds + "";
-   		this.live = false;
-   		this.searchTransactions(this.selectedOptionId,dataPointFactor1, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints1,selectedInsurance,selectedCompany,this.exe_id);
+   		
+   		this.searchTransactions(this.selectedOptionId, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,this.exe_id);
    		console.log('Unsubscribe from periodically refreshing data');
    
    	    } else {
@@ -591,7 +635,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
    }
 
 
-    searchTransactions(selectedOption,dataPointFactor, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints,selectedInsurance,selectedCompany,exeId): void {
+    searchTransactions(selectedOption, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId): void {
         this.unsubscribeToData();
 	this.insuranceTransactionsResponse=null;
 	this.filteredTypesSummary=[];
@@ -630,7 +674,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 			//console.log('typesSummary : ' + JSON.stringify(this.filteredTypesSummary));
                         //console.log('companiesSummary : ' + JSON.stringify(this.filteredCompaniesSummary));
                         
-                        this.updateFilteredChart(selectedOption,dataPointFactor, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints,selectedInsurance,selectedCompany,exeId);
+                        this.updateFilteredChart(selectedOption, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId);
                     } else {
                         console.log('Invalid Response Data');
 		        this.insuranceTransactionsResponse=null;
@@ -656,7 +700,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             
         if (this.live) {
             console.log('Subscribe from periodically refreshing data');
-            this.subscribeToData(selectedOption,dataPointFactor, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints,selectedInsurance,selectedCompany,exeId);
+            this.subscribeToData(selectedOption, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId);
         }
         
         
@@ -710,14 +754,14 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     }    
 
 
-    subscribeToData(selectedOption,dataPointFactor, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints,selectedInsurance,selectedCompany,exeId): void {
-        let refreshFrequency = 2000;
+    subscribeToData(selectedOption, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId): void {
+        
         let currentDate = new Date();
         currentDate.setSeconds(0);
         let currentTimeInMilliSeconds = currentDate.getTime();
         fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000*1));
         //this.fromMilliseconds=fromTimeInMilliSeconds+"";
-        this.timerSubscription = Observable.timer(refreshFrequency).first().subscribe(() => this.searchTransactions(selectedOption,0, fromTimeInMilliSeconds,toTimeInMilliSeconds,0,selectedInsurance,selectedCompany,exeId));
+        this.timerSubscription = Observable.timer(this.refreshFrequency).first().subscribe(() => this.searchTransactions(selectedOption,fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId));
     }
 
     
@@ -744,10 +788,13 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             console.log('totalPoliciesCount :'+totalPoliciesCount);
             
 	    let pieChartData = [[]];        
-	    pieChartData.push(["Quotes(unused)="+(totalQuotesCount-totalPoliciesCount), (totalQuotesCount-totalPoliciesCount) ], ["Policies="+totalPoliciesCount, totalPoliciesCount ]);
+	    pieChartData.push(["Quotes", (totalQuotesCount-totalPoliciesCount) ], ["Policies", totalPoliciesCount ]);
 	    pieChartData[0] = ["Label", "Count"];
             this.grandTotalQuotes =totalQuotesCount; 
             this.grandTotalPolicies =totalPoliciesCount; 
+            if(totalQuotesCount>0){
+            this.grandTotalConversion = ((totalPoliciesCount/totalQuotesCount)*100).toFixed(2)+"%";
+            }
             this.grandTotalRevenue =parseFloat(this.insuranceSummary.totalPoliciesAmount);
 	   
 	    	    
@@ -757,8 +804,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             let typesLength = this.typesSummary.length;
             for(let e=0;e<typesLength;e++){
             let floatData = (parseFloat(this.typesSummary[e].totalPoliciesAmount)).toFixed(2);
-               typesPieChartData.push([this.typesSummary[e].name+"="+this.typesSummary[e].policiesCount, Number(this.typesSummary[e].policiesCount) ]);	   
-               typesRevPieChartData.push([(this.typesSummary[e].name+"="+floatData), Number(floatData+"") ]);	               
+               typesPieChartData.push([this.typesSummary[e].name, Number(this.typesSummary[e].policiesCount) ]);	   
+               typesRevPieChartData.push([(this.typesSummary[e].name), Number(floatData+"") ]);	               
             }
            }
            typesPieChartData[0] = ["Insurance", "Policies"];
@@ -772,8 +819,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             let companiesLength = this.companiesSummary.length;
             for(let e=0;e<companiesLength;e++){
             let floatData = (parseFloat(this.companiesSummary[e].totalPoliciesAmount)).toFixed(2);
-               companiesPieChartData.push([this.companiesSummary[e].name+"="+this.companiesSummary[e].policiesCount, Number(this.companiesSummary[e].policiesCount) ]);	   
-               companiesRevPieChartData.push([(this.companiesSummary[e].name+"="+floatData), Number(floatData+"") ]);	               
+               companiesPieChartData.push([this.companiesSummary[e].name, Number(this.companiesSummary[e].policiesCount) ]);	   
+               companiesRevPieChartData.push([(this.companiesSummary[e].name), Number(floatData+"") ]);	               
             }
            }
            companiesPieChartData[0] = ["Company", "Policies"];
@@ -793,10 +840,9 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         
     }
 
-    updateFilteredChart(selectedOption,dataPointFactor, fromTimeInMilliSeconds,toTimeInMilliSeconds,dataPoints,selectedInsurance,selectedCompany,exeId): void {
+    updateFilteredChart(selectedOption, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId): void {
 
-        console.log('Number of transactions :' + this.insuranceTransactions.length);
-        console.log('dataPointFactor :' + dataPointFactor);
+        console.log('Number of transactions :' + this.insuranceTransactions.length);        
         console.log('fromTimeInMilliSeconds :' + fromTimeInMilliSeconds);
                     
     	let isOnlyTimeRequired = false;
@@ -969,8 +1015,11 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
            
             this.totalQuotes = totalQuotesCount;
             this.totalPolicies = totalPoliciesCount;
+            if(totalQuotesCount>0){
+            this.totalConversion = ((totalPoliciesCount/totalQuotesCount)*100).toFixed(2)+"%";
+            }
             let pieChartData = [[]];        
-            pieChartData.push(["Quotes(unused)="+(totalQuotesCount-totalPoliciesCount), (totalQuotesCount-totalPoliciesCount) ], ["Policies="+totalPoliciesCount, totalPoliciesCount ]);
+            pieChartData.push(["Quotes", (totalQuotesCount-totalPoliciesCount) ], ["Policies", totalPoliciesCount ]);
             pieChartData[0] = ["Label", "Count"];
     
             
@@ -980,8 +1029,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	                let typesLength = this.filteredTypesSummary.length;
 	                for(let e=0;e<typesLength;e++){
 	                let floatData = (parseFloat(this.filteredTypesSummary[e].totalPoliciesAmount)).toFixed(2);
-	                   typesPieChartData.push([this.filteredTypesSummary[e].name+"="+this.filteredTypesSummary[e].policiesCount, Number(this.filteredTypesSummary[e].policiesCount) ]);	   
-	                   typesRevPieChartData.push([(this.filteredTypesSummary[e].name+"="+floatData), Number(floatData+"") ]);	               
+	                   typesPieChartData.push([this.filteredTypesSummary[e].name, Number(this.filteredTypesSummary[e].policiesCount) ]);	   
+	                   typesRevPieChartData.push([(this.filteredTypesSummary[e].name), Number(floatData+"") ]);	               
 	                }
 	               }
 	               typesPieChartData[0] = ["Insurance", "Policies"];
@@ -997,8 +1046,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	                let companiesLength = this.filteredCompaniesSummary.length;
 	                for(let e=0;e<companiesLength;e++){
 	                let floatData = (parseFloat(this.filteredCompaniesSummary[e].totalPoliciesAmount)).toFixed(2);
-	                   companiesPieChartData.push([this.filteredCompaniesSummary[e].name+"="+this.filteredCompaniesSummary[e].policiesCount, Number(this.filteredCompaniesSummary[e].policiesCount) ]);	   
-	                   companiesRevPieChartData.push([(this.filteredCompaniesSummary[e].name+"="+floatData), Number(floatData+"") ]);	               
+	                   companiesPieChartData.push([this.filteredCompaniesSummary[e].name, Number(this.filteredCompaniesSummary[e].policiesCount) ]);	   
+	                   companiesRevPieChartData.push([(this.filteredCompaniesSummary[e].name), Number(floatData+"") ]);	               
 	                }
 	               }
 	               companiesPieChartData[0] = ["Company", "Policies"];

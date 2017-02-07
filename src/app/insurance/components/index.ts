@@ -215,19 +215,19 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         this.dashboard_googlechart1.chart.draw(this.filteredLineChartData, this.lineChartOptions);
 
        // this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_pie_chart'));
-       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, pieChartOptions);
+       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, this.pieChartOptions);
         
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, this.pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, this.pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, this.pieChartOptions);
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, pieChartOptions);        
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, this.pieChartOptions);        
 
 
     }
@@ -236,20 +236,20 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     
            
             //this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('summary_pie_chart'));
-           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, pieChartOptions);
+           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, this.pieChartOptions);
             
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, this.pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, this.pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, this.pieChartOptions);
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, pieChartOptions);
+	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, this.pieChartOptions);
             
     }
 

@@ -91,7 +91,10 @@
                                <span>&nbsp;</span>
                             </li>
 							<li class="pull-right switch panel-btn" [hidden]="(selectedOptionId==0&&selectedChartId==0)&&selectedCompanyId==0&&selectedInsuranceId==0">
-							   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="reset_clicked()"><i class="material-icons">clear_all</i>CLEAR</button>
+							   <div class="pull-right info-box bg-cyan hover-expand-effect icon">
+							   <i class="material-icons">clear_all</i>
+							   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="reset_clicked()">CLEAR</button>
+							   </div>
 							</li>
                             <li>
                                <span>&nbsp;</span>
@@ -99,15 +102,10 @@
 							<li class="form-line">
 							   <div class="container-fluid">
 								   <input type="text" class="form-control" name="exe_id" placeholder="Report Id" required="" autofocus="" aria-required="true" [(ngModel)]='exe_id'>
-									 <div class="info-box bg-cyan hover-expand-effect">
-										   <div class="icon">
-											   <i class="material-icons">search</i>
-										   </div>
-										   <div class="content" >
-											   <div class="text">SEARCH</div>
-											   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="triggerSearch()"><i class="material-icons">search</i>SEARCH</button>
-										   </div>
-									</div>
+									   <div class="pull-right info-box bg-cyan hover-expand-effect icon">
+										   <i class="material-icons">search</i>
+										   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="triggerSearch()">SEARCH</button>
+									   </div>
 							   </div>
 							</li>
                 </ul>

@@ -8,7 +8,7 @@ import { AppComponent }         from './app.component';
 import { EmitterService }          from './emitter.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
-import {TimeAgoPipe} from 'angular2-moment/time-ago.pipe';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 @NgModule({
   imports: [

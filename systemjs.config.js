@@ -32,7 +32,7 @@
       'rxjs':                      'npm:rxjs',
       'angular2-moment' : 'npm:angular2-moment',
       'moment':'npm:moment',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      'time-ago-pipe':'npm:time-ago-pipe',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -55,10 +55,7 @@
 		  main: './underscore.js',
 	  	  defaultExtension: 'js'
       },
-      'angular2-moment': {
-	  		  main: './index.js',
-	  	  	  defaultExtension: 'js'
-      },
+	'time-ago-pipe': {main: 'time-ago-pipe.js'},
       'moment': {
 	  		  main: './moment.js',
 	  	  	  defaultExtension: 'js'

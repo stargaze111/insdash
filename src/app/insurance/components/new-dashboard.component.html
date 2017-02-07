@@ -99,10 +99,10 @@
                                <span>&nbsp;</span>
                             </li>
 							<li>
-							   <div class="col-xs-5">
+							   <div class="col-xs-4">
 									   <button class="btn btn-block bg-cyan waves-effect" type="submit" (click)="triggerSearch()">SEARCH</button>
 								   </div>
-							   <div class="col-xs-5">
+							   <div class="col-xs-4">
 							   		<button class="btn btn-block bg-cyan waves-effect" type="submit" (click)="reset_clicked()">RESET</button>
 							   </div>
 							</li>
@@ -120,27 +120,29 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
-                <span class="pull-left m-r-10 font-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Refreshed at {{globalCurrentTime}}</i></span>
+				<span class="pull-left m-r-10 font-10" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{search_options[selectedOptionId].name.toUpperCase()}}</i></span>
+                <span class="pull-left m-r-10 font-10" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{company_types[selectedCompanyId].name.toUpperCase()}}</i></span>
+                <span class="pull-left m-r-10 font-10" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</i></span>
             </div>
 			<div class="pull-right">
 				<div class="switch panel-switch-btn" [hidden]="selectedChartId==1">
 					<span class="m-r-10 font-12">REAL TIME</span>
 					<label>OFF<input type="checkbox" id="realtime" checked (click)="selectLive()"><span class="lever switch-col-cyan"></span>ON</label>
 				</div>
+				<span class="pull-right m-r-10 font-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Last Refreshed at {{globalCurrentTime}}</i></span>
 				<div [hidden]="selectedChartId==0">
 					<span class="m-r-10 font-12">&nbsp;</span>
 					<label>&nbsp;</label>
 				</div>
 			</div>
         </div>
-         <div class="row container-fluid">
+         <div class="container-fluid">
             <div class="block-header">
-                <span class="pull-left m-r-10 font-12">FILTERS</span>
-                <span class="pull-left m-r-10 font-12" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{search_options[selectedOptionId].name.toUpperCase()}}</i></span>
-                <span class="pull-left m-r-10 font-12" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{company_types[selectedCompanyId].name.toUpperCase()}}</i></span>
-                <span class="pull-left m-r-10 font-12" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</i></span>
             </div>
-
+				<div [hidden]="selectedChartId==0">
+					<span class="m-r-10 font-12">&nbsp;</span>
+					<label>&nbsp;</label>
+				</div>
            </div>
             <!-- Widgets -->
             <div class="row clearfix">

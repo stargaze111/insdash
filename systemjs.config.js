@@ -64,7 +64,7 @@
 	  	  	  defaultExtension: 'js'
       },
       'angular2-moment': {
-	  		  main: './moment.module.js',
+	  		  main: './index.js',
 	  	  	  defaultExtension: 'js'
       },
       'moment': {

@@ -52,7 +52,6 @@ import {TimeAgoPipe} from 'angular2-moment';
 
 @Component({
     selector: 'insurance-dashboard-widget',
-    pipes: [TimeAgoPipe],
     templateUrl: './src/app/insurance/components/new-dashboard.component.html'
 })
 

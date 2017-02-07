@@ -170,7 +170,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             title: 'COUNT',
             titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
             textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}
-        }    
+        },    
     chartArea :{bottom:100},
         hAxis: {
             title: 'TIME',

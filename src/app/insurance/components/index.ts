@@ -151,12 +151,14 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 
     pieChartOptions = {
     backgroundColor: '#ffe6e6',
-    tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 12,bold: false}},
-    legend: {textStyle:  {fontName: 'Roboto',fontSize: 12,bold: false}}
+    titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
+    tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
+    legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}}
     }
 
     lineChartOptions = {
     backgroundColor: '#ffe6e6',
+    titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
     tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
     legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
     chartArea :{bottom:100},

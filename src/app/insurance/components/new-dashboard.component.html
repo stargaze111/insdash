@@ -90,16 +90,13 @@
                             <li>
                                <span>&nbsp;</span>
                             </li>
-							<li class="form-line">
-							   <div class="container-fluid">
+							<li class="pull-right">
 							       <div class="col-xs-8 p-t-5">
 								      <input type="text" class="form-control" name="exe_id" placeholder="Report Id" required="" autofocus="" aria-required="true" [(ngModel)]='exe_id'>
 								   </div>
-								   <div class="col-xs-4 info-box bg-cyan hover-expand-effect icon">
-									   <i class="material-icons">search</i>
-									   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="triggerSearch()">SEARCH</button>
+								   <div class="col-xs-4 bg-cyan hover-expand-effect icon">
+									   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="triggerSearch()"><i class="material-icons">search</i>SEARCH</button>
 								   </div>
-							   </div>
 							</li>
  							<li>
                                <span>&nbsp;</span>
@@ -108,9 +105,8 @@
 							   <div class="col-xs-8 p-t-5">
 							   			<span>&nbsp;</span>
 							   </div>
-							   <div class="col-xs-4 info-box bg-cyan hover-expand-effect icon">
-							   <i class="material-icons">clear_all</i>
-							   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="reset_clicked()">CLEAR</button>
+							   <div class="col-xs-4  bg-cyan hover-expand-effect icon">
+							   <button class="btn btn-block bg-cyan waves-effect icon" type="submit" (click)="reset_clicked()"><i class="material-icons">clear_all</i>RESET</button>
 							   </div>
 							</li>
                 </ul>

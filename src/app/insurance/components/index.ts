@@ -153,10 +153,10 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     backgroundColor: '#ffe6e6',
     chartArea :{bottom:100},
         hAxis: {
-            title: 'Time'
+            title: 'TIME'
         },
         vAxis: {
-            title: 'Count'
+            title: 'COUNT'
         }
     }
 
@@ -1011,7 +1011,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
       	   // console.log('tempLineChartData count : ' + tempLineChartData.length);
       	   
       	   
-            tempLineChartData[0] = ["Time", "Quotes", "Policies"];
+            tempLineChartData[0] = ["TIME", "QUOTES", "POLICIES"];
             this.filteredLineChartData = this.dashboard_googlechart1.createDataTable(tempLineChartData);
             this.totalPolicyAmount = totalRevenue;
            

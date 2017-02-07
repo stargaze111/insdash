@@ -160,15 +160,13 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
     tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
     legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},   
-    chartArea :{bottom:50,to:50},
-        hAxis: {
-            title: 'TIME',
+    chartArea :{bottom:80,to:50},
+        hAxis: {           
             titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
             textStyle:  {fontName: 'Roboto',fontSize: 10,bold: false,italic:false},
             legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}}
         },
-        vAxis: {
-            title: 'COUNT',
+        vAxis: {           
             titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
             textStyle:  {fontName: 'Roboto',fontSize: 10,bold: false,italic:false},
             legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}}
@@ -177,6 +175,17 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 
     toggleDashboardMenu(value){
     let style = (<HTMLInputElement>document.getElementById("dashboard_menu")).style;
+    if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
+      style.display='block';
+    }else {
+      style.display='none';
+    }
+      
+    }
+    
+    
+    toggleSearchMenu(value){
+    let style = (<HTMLInputElement>document.getElementById("search_menu")).style;
     if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
       style.display='block';
     }else {
@@ -274,8 +283,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         //initialize dropdowns
         this.initializeDropdowns();
 
-
-        this.triggerSearch();
+        this.reset_clicked();
 
 
     }
@@ -464,6 +472,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 
     reset_clicked() {
           console.log('Reset Clicked ');
+	  this.grandTotalConversion ="0%";
+	  this.totalConversion = "0%";          
 	  this.totalPolicyAmount=0; 
 	  this.totalQuotes=0;
 	  this.totalPolicies=0;
@@ -473,10 +483,13 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	  this.selectedChartId = 0;	  
 	  this.live = true;
           this.exe_id = "";
-          this.search_option = new InsuranceDashboardSearchOption(-1, '');
-          this.insurance_type = new InsuranceDashboardInsuranceType(-1, '');
-          this.company_type = new InsuranceDashboardCompanyType(-1, '');
-          this.chart_type = new InsuranceDashboardChartType(-1, '');
+	this.search_option = new InsuranceDashboardSearchOption(0, 'Last 5 minutes');
+	this.insurance_type = new InsuranceDashboardInsuranceType(0, 'All');
+	this.company_type = new InsuranceDashboardCompanyType(0, 'All');
+	this.chart_type = new InsuranceDashboardChartType(0, 'Main');  
+
+
+          
           this.isLoaded = false;  
           this.fromMilliseconds="";
           this.toMilliseconds="";
@@ -811,6 +824,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             this.grandTotalPolicies =totalPoliciesCount; 
             if(totalQuotesCount>0){
             this.grandTotalConversion = ((totalPoliciesCount/totalQuotesCount)*100).toFixed(2)+"%";
+            }else{
+              this.grandTotalConversion = "0%";
             }
             this.grandTotalRevenue =parseFloat(this.insuranceSummary.totalPoliciesAmount);
 	   
@@ -1034,6 +1049,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             this.totalPolicies = totalPoliciesCount;
             if(totalQuotesCount>0){
             this.totalConversion = ((totalPoliciesCount/totalQuotesCount)*100).toFixed(2)+"%";
+            }else{
+            this.totalConversion = "0%";
             }
             let pieChartData = [[]];        
             pieChartData.push(["Quotes", (totalQuotesCount-totalPoliciesCount) ], ["Policies", totalPoliciesCount ]);

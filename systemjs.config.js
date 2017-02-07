@@ -30,7 +30,7 @@
       'moment': 'npm:moment',
       'ng2-googlechart':           'npm:ng2-googlechart',
       'rxjs':                      'npm:rxjs',
-      'ng2-timeago' : 'npm:ng2-timeago',
+      'angular2-moment' : 'npm:angular2-moment',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -53,6 +53,10 @@
       'underscore': {
 		  main: './underscore.js',
 	  	  defaultExtension: 'js'
+      },
+      'angular2-moment': {
+	  		  main: './index.js',
+	  	  	  defaultExtension: 'js'
       },
       'moment': {
 	  		  main: './moment.js',

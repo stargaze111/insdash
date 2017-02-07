@@ -150,6 +150,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     ]);
 
     linechartoptions = {
+    backgroundColor: '#ffe6e6',
     chartArea :{bottom:100},
         hAxis: {
             title: 'Time'
@@ -206,19 +207,19 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         this.dashboard_googlechart1.chart.draw(this.filteredLineChartData, this.linechartoptions);
 
        // this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_pie_chart'));
-       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, {});
+       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, {backgroundColor: '#ffe6e6'});
         
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, {backgroundColor: '#ffe6e6'});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, {backgroundColor: '#ffe6e6'});
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, {});        
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});        
 
 
     }
@@ -227,20 +228,20 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     
            
             //this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('summary_pie_chart'));
-           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, {});
+           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, {backgroundColor: '#ffe6e6'});
             
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, {backgroundColor: '#ffe6e6'});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, {backgroundColor: '#ffe6e6'});
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, {});
+	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});
             
     }
 

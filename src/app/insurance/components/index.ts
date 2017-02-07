@@ -52,8 +52,7 @@ import {TimeAgo} from 'ng2-timeago'
 
 @Component({
     selector: 'insurance-dashboard-widget',
-    templateUrl: './src/app/insurance/components/new-dashboard.component.html',
-    directives: [TimeAgo]
+    templateUrl: './src/app/insurance/components/new-dashboard.component.html'
 })
 
 

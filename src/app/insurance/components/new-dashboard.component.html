@@ -101,9 +101,9 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
-                <h2 class="pull-left" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{search_options[selectedOptionId].name.toUpperCase()}}</h2>
-                <h2 class="pull-left" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</h2>
-                <h2 class="pull-left" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</h2>
+                <span class="pull-left m-r-10 font-12" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{search_options[selectedOptionId].name.toUpperCase()}}</span>
+                <span class="pull-left m-r-10 font-12" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</span>
+                <span class="pull-left m-r-10 font-12" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</span>
             </div>
 			<div class="pull-right">
 				<div class="switch panel-switch-btn" [hidden]="selectedChartId==1">

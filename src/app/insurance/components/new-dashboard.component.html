@@ -19,7 +19,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <span class="navbar-brand">ANALYTICS DASHBOARD</span>
+                <span class="navbar-brand"><b>ANALYTICS DASHBOARD</b></span>
             </div>
         </div>
     </nav>
@@ -100,7 +100,7 @@
         <div class="container-fluid">
         <div class="container-fluid">
             <div class="block-header">
-                <h2 class="pull-left">{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</h2>
+                <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
                 <h2 class="pull-left" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{search_options[selectedOptionId].name.toUpperCase()}}</h2>
                 <h2 class="pull-left" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</h2>
                 <h2 class="pull-left" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</h2>
@@ -173,7 +173,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header" style="background-color: #DE1D5E">
-                            <div class="text">TRANSACTIONS</div>
+                            <div class="content text">TRANSACTIONS</div>
                         </div>
                         <div class="body" style="background-color: #ffe6e6">
                             <div id="line_chart" class="dashboard-flot-chart"></div>
@@ -188,7 +188,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header" style="background-color: #DE1D5E">
-						    <div class="text">COMPANY / REVENUE</div>
+						    <div class="content text">COMPANY / REVENUE</div>
 							<ul class="header-dropdown m-r--5">
 							</ul>
 						</div>
@@ -206,7 +206,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<div class="card">
 					<div class="header" style="background-color: #DE1D5E" >
-					    <div class="text">INSURANCE / REVENUE</div>
+					    <div class="content text">INSURANCE / REVENUE</div>
 						<ul class="header-dropdown m-r--5">
 						</ul>
 					</div>
@@ -227,7 +227,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="card">
 						<div class="header" style="background-color: #DE1D5E">
-						    <div class="text">COMPANY / POLICIES</div>
+						    <div class="content text">COMPANY / POLICIES</div>
 							<ul class="header-dropdown m-r--5">
 							</ul>
 						</div>
@@ -244,7 +244,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header" style="background-color: #DE1D5E">
-                            <div class="text">INSURANCE / POLICIES</div>
+                            <div class="content text">INSURANCE / POLICIES</div>
                             <ul class="header-dropdown m-r--5">
                             </ul>
                         </div>

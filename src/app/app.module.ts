@@ -8,7 +8,6 @@ import { AppComponent }         from './app.component';
 import { EmitterService }          from './emitter.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
-import {TimeAgoPipe} from 'time-ago-pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +20,7 @@ import {TimeAgoPipe} from 'time-ago-pipe';
     InsuranceModule   
   ],
   declarations: [
-    AppComponent,TimeAgoPipe
+    AppComponent
   ],
   providers: [
     EmitterService,{provide: APP_BASE_HREF, useValue : '/' }

@@ -6,8 +6,7 @@
   System.config({
     paths: {
       // paths serve as alias
-      'npm:': 'node_modules/',
-      'time-ago-pipe':'node_modules/time-ago-pipe'
+      'npm:': 'node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
@@ -31,6 +30,7 @@
       'moment': 'npm:moment',
       'ng2-googlechart':           'npm:ng2-googlechart',
       'rxjs':                      'npm:rxjs',
+      'ng2-timeago' : 'npm:ng2-timeago',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -62,7 +62,7 @@
 	  		  main: './moment.module.js',
 	  	  	  defaultExtension: 'js'
       },
-      'time-ago-pipe': {main: 'time-ago-pipe.js'},
+      'ng2-timeago': {defaultExtension: 'js'},
       'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'

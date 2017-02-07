@@ -161,6 +161,16 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
     tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
     legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
+        hAxis: {
+            title: 'TIME',
+            titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
+            textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}
+        },
+        vAxis: {
+            title: 'COUNT',
+            titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
+            textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}
+        }    
     chartArea :{bottom:100},
         hAxis: {
             title: 'TIME',

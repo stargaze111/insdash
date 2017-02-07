@@ -120,7 +120,7 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
-                <span class="pull-left m-r-10 font-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Refreshed {{date | amTimeAgo}}</i></span>
+                <span class="pull-left m-r-10 font-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Refreshed {{date | timeAgo}}</i></span>
             </div>
 			<div class="pull-right">
 				<div class="switch panel-switch-btn" [hidden]="selectedChartId==1">

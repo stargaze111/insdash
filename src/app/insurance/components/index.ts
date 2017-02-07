@@ -48,7 +48,7 @@ import {
     GoogleChartComponent
 } from '../components/googlechart.component';
 import * as moment from 'moment';
-import {TimeAgo} from 'ng2-timeago/timeago'
+import {TimeAgo} from 'ng2-timeago'
 
 @Component({
     selector: 'insurance-dashboard-widget',

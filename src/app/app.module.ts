@@ -8,6 +8,8 @@ import { AppComponent }         from './app.component';
 import { EmitterService }          from './emitter.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
+import {MomentModule} from 'angular2-moment';
+
 
 @NgModule({
   imports: [
@@ -17,7 +19,8 @@ import { APP_BASE_HREF } from '@angular/common';
     JsonpModule,
     Ng2GoogleChartModule,
     AppRoutingModule,
-    InsuranceModule   
+    InsuranceModule,
+    MomentModule
   ],
   declarations: [
     AppComponent

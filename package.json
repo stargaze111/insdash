@@ -11,7 +11,7 @@
     "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
     "lint": "tslint ./app/**/*.ts -t verbose",
     "lite": "lite-server",
-    "postinstall": "typings install dt~underscore --global --save && typings install dt~es6-promise dt~es6-collections --global --save",
+    "postinstall": "typings install dt~underscore --global --save && typings install dt~es6-promise dt~es6-collections --global --save && typings install --save moment",
     "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
     "test-once": "tsc && karma start karma.conf.js --single-run",
     "tsc": "tsc",
@@ -48,7 +48,7 @@
     "express": "^4.13.4",
     "morgan": "^1.7.0",
     "adminbsb-materialdesign":"1.0.4",
-    "ng2-timeago":""
+    "angular2-moment":""
   },
   "devDependencies": {
     "concurrently": "^2.2.0",

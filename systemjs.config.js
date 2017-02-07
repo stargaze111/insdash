@@ -62,7 +62,10 @@
 	  		  main: './moment.module.js',
 	  	  	  defaultExtension: 'js'
       },
-      'ng2-timeago': {defaultExtension: 'js'},
+      'moment': {
+	                  main: './moment.js',
+	                  defaultExtension: 'js'
+            },
       'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'

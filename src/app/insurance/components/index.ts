@@ -4,7 +4,8 @@ import {
     Component,
     OnInit,
     OnDestroy,
-    OnChanges
+    OnChanges,
+    Pipe
 } from '@angular/core';
 import 'rxjs/add/operator/take';
 import {
@@ -274,10 +275,6 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         this.initializeDropdowns();
 
 
-        setInterval(() => {
-            this.date = new Date();
-        }, 1000);
-        
         this.triggerSearch();
 
 

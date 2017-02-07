@@ -149,7 +149,13 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         []
     ]);
 
-    linechartoptions = {
+    pieChartOptions = {
+    backgroundColor: '#ffe6e6',
+    tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 12,bold: false}},
+    legend: {textStyle:  {fontName: 'Roboto',fontSize: 12,bold: false}}
+    }
+
+    lineChartOptions = {
     backgroundColor: '#ffe6e6',
     tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 12,bold: false}},
     legend: {textStyle:  {fontName: 'Roboto',fontSize: 12,bold: false}},
@@ -206,22 +212,22 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     drawFilteredGraph() {
 
         this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createLineChart(document.getElementById('line_chart'));
-        this.dashboard_googlechart1.chart.draw(this.filteredLineChartData, this.linechartoptions);
+        this.dashboard_googlechart1.chart.draw(this.filteredLineChartData, this.lineChartOptions);
 
        // this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_pie_chart'));
-       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, {backgroundColor: '#ffe6e6'});
+       // this.dashboard_googlechart1.chart.draw(this.filteredPieChartData, pieChartOptions);
         
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsTypeSummaryPieChartData, pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.filteredInsRevSummaryPieChartData, pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanySummaryPieChartData, pieChartOptions);
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('filtered_company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});        
+	    this.dashboard_googlechart1.chart.draw(this.filteredCompanyRevSummaryPieChartData, pieChartOptions);        
 
 
     }
@@ -230,20 +236,20 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     
            
             //this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('summary_pie_chart'));
-           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, {backgroundColor: '#ffe6e6'});
+           // this.dashboard_googlechart1.chart.draw(this.summaryPieChartData, pieChartOptions);
             
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.insTypeSummaryPieChartData, pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('ins_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.insRevSummaryPieChartData, pieChartOptions);
             
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.companySummaryPieChartData, pieChartOptions);
            
 	    this.dashboard_googlechart1.chart = this.dashboard_googlechart1.createPieChart(document.getElementById('company_rev_pie_chart'));
-	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, {backgroundColor: '#ffe6e6'});
+	    this.dashboard_googlechart1.chart.draw(this.companyRevSummaryPieChartData, pieChartOptions);
             
     }
 

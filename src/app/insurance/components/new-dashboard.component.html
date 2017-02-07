@@ -172,10 +172,10 @@
             <div class="row clearfix">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="header" style="background-color: #E9E9E9">
+                        <div class="header" style="background-color: #DE1D5E">
                             <div class="text">TRANSACTIONS</div>
                         </div>
-                        <div class="body">
+                        <div class="body" style="background-color: #ffe6e6">
                             <div id="line_chart" class="dashboard-flot-chart"></div>
                         </div>
                     </div>
@@ -187,15 +187,15 @@
                 <!-- Task Info -->
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="card">
-						<div class="header" style="background-color: #E9E9E9">
+						<div class="header" style="background-color: #DE1D5E">
 						    <div class="text">COMPANY / REVENUE</div>
 							<ul class="header-dropdown m-r--5">
 							</ul>
 						</div>
-                        <div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+                        <div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1" style="background-color: #ffe6e6">
                             <div id="company_rev_pie_chart"  class="dashboard-donut-chart"></div>
                         </div>
-                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0 )">
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0 )" style="background-color: #ffe6e6">
                             <div id="filtered_company_rev_pie_chart" class="dashboard-donut-chart"></div>
                         </div>
 					</div>
@@ -205,15 +205,15 @@
                 <!-- Answered Tickets -->
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<div class="card">
-					<div class="header" style="background-color: #E9E9E9">
+					<div class="header" style="background-color: #DE1D5E" >
 					    <div class="text">INSURANCE / REVENUE</div>
 						<ul class="header-dropdown m-r--5">
 						</ul>
 					</div>
-					<div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+					<div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1" style="background-color: #ffe6e6">
 						<div id="ins_rev_pie_chart"  class="dashboard-donut-chart"></div>
 					</div>
-                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)">
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)" style="background-color: #ffe6e6">
                             <div id="filtered_ins_rev_pie_chart" class="dashboard-donut-chart"></div>
                         </div>
 				</div>
@@ -226,15 +226,15 @@
                 <!-- Task Info -->
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="card">
-						<div class="header" style="background-color: #E9E9E9">
+						<div class="header" style="background-color: #DE1D5E">
 						    <div class="text">COMPANY / POLICIES</div>
 							<ul class="header-dropdown m-r--5">
 							</ul>
 						</div>
-						<div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+						<div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1" style="background-color: #ffe6e6">
 							<div id="company_pie_chart" class="dashboard-donut-chart"></div>
 						</div>
-                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)">
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)" style="background-color: #ffe6e6">
                             <div id="filtered_company_pie_chart" class="dashboard-donut-chart"></div>
                         </div>
 					</div>
@@ -243,15 +243,15 @@
                 <!-- Browser Usage -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header" style="background-color: #E9E9E9">
+                        <div class="header" style="background-color: #DE1D5E">
                             <div class="text">INSURANCE / POLICIES</div>
                             <ul class="header-dropdown m-r--5">
                             </ul>
                         </div>
-                        <div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1">
+                        <div class="body" [hidden]="grandTotalQuotes<=0 || selectedChartId==1" style="background-color: #ffe6e6">
                             <div id="ins_pie_chart" class="dashboard-donut-chart"></div>
                         </div>
-                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)">
+                        <div class="body"  [hidden]="(totalQuotes<=0 || selectedChartId==0)" style="background-color: #ffe6e6">
                             <div id="filtered_ins_pie_chart" class="dashboard-donut-chart"></div>
                         </div>
                     </div>

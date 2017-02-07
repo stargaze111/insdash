@@ -48,7 +48,8 @@
     "express": "^4.13.4",
     "morgan": "^1.7.0",
     "adminbsb-materialdesign":"1.0.4",
-    "angular2-moment":""
+    "angular2-moment":"",
+    "moment":""
   },
   "devDependencies": {
     "concurrently": "^2.2.0",

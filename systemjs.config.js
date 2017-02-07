@@ -7,7 +7,7 @@
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/',
-      'widgets':'widgets/'
+      'time-ago-pipe':'node_modules/time-ago-pipe'
     },
     // map tells the System loader where to look for things
     map: {
@@ -62,6 +62,7 @@
 	  		  main: './moment.module.js',
 	  	  	  defaultExtension: 'js'
       },
+      'time-ago-pipe': {main: 'time-ago-pipe.js'},
       'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'

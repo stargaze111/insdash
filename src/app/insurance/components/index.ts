@@ -161,7 +161,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
     tooltip: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},
     legend: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false}},   
-    chartArea :{bottom:100},
+    chartArea :{bottom:50,to:50},
         hAxis: {
             title: 'TIME',
             titleTextStyle: {textStyle:  {fontName: 'Roboto',fontSize: 11,bold: false,italic:false}},
@@ -275,6 +275,10 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         //initialize dropdowns
         this.initializeDropdowns();
 
+
+        setInterval(() => {
+            this.date = new Date();
+        }, 1000);
         
         this.triggerSearch();
 

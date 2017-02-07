@@ -8,7 +8,6 @@ import { AppComponent }         from './app.component';
 import { EmitterService }          from './emitter.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
-import {MomentModule} from 'angular2-moment';
 import {TimeAgoPipe} from 'angular2-moment/time-ago.pipe';
 
 @NgModule({
@@ -19,8 +18,7 @@ import {TimeAgoPipe} from 'angular2-moment/time-ago.pipe';
     JsonpModule,
     Ng2GoogleChartModule,
     AppRoutingModule,
-    InsuranceModule,
-    MomentModule
+    InsuranceModule
   ],
   declarations: [
     AppComponent,TimeAgoPipe

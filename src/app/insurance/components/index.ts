@@ -47,8 +47,6 @@ import {
 import {
     GoogleChartComponent
 } from '../components/googlechart.component';
-import * as moment from 'moment';
-import {TimeAgoPipe} from 'angular2-moment';
 
 @Component({
     selector: 'insurance-dashboard-widget',

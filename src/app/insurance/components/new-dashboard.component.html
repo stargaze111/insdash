@@ -14,7 +14,7 @@
     </div>
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar">
+    <nav class="navbar" style="opacity: 1">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
@@ -102,8 +102,8 @@
             <div class="block-header">
                 <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
                 <span class="pull-left m-r-10 font-12" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{search_options[selectedOptionId].name.toUpperCase()}}</span>
-                <span class="pull-left m-r-10 font-12" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</span>
-                <span class="pull-left m-r-10 font-12" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</span>
+                <span class="pull-left m-r-10 font-12" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{company_types[selectedCompanyId].name.toUpperCase()}}</span>
+                <span class="pull-left m-r-10 font-12" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</span>
             </div>
 			<div class="pull-right">
 				<div class="switch panel-switch-btn" [hidden]="selectedChartId==1">

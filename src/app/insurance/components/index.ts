@@ -806,8 +806,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             let typesLength = this.typesSummary.length;
             for(let e=0;e<typesLength;e++){
             let floatData = (parseFloat(this.typesSummary[e].totalPoliciesAmount)).toFixed(2);
-               typesPieChartData.push([this.typesSummary[e].name, Number(this.typesSummary[e].policiesCount) ]);	   
-               typesRevPieChartData.push([(this.typesSummary[e].name), Number(floatData+"") ]);	               
+               typesPieChartData.push([this.typesSummary[e].name.toUpperCase(), Number(this.typesSummary[e].policiesCount) ]);	   
+               typesRevPieChartData.push([(this.typesSummary[e].name.toUpperCase()), Number(floatData+"") ]);	               
             }
            }
            typesPieChartData[0] = ["Insurance", "Policies"];
@@ -821,8 +821,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
             let companiesLength = this.companiesSummary.length;
             for(let e=0;e<companiesLength;e++){
             let floatData = (parseFloat(this.companiesSummary[e].totalPoliciesAmount)).toFixed(2);
-               companiesPieChartData.push([this.companiesSummary[e].name, Number(this.companiesSummary[e].policiesCount) ]);	   
-               companiesRevPieChartData.push([(this.companiesSummary[e].name), Number(floatData+"") ]);	               
+               companiesPieChartData.push([this.companiesSummary[e].name.toUpperCase(), Number(this.companiesSummary[e].policiesCount) ]);	   
+               companiesRevPieChartData.push([(this.companiesSummary[e].name.toUpperCase()), Number(floatData+"") ]);	               
             }
            }
            companiesPieChartData[0] = ["Company", "Policies"];
@@ -1031,8 +1031,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	                let typesLength = this.filteredTypesSummary.length;
 	                for(let e=0;e<typesLength;e++){
 	                let floatData = (parseFloat(this.filteredTypesSummary[e].totalPoliciesAmount)).toFixed(2);
-	                   typesPieChartData.push([this.filteredTypesSummary[e].name, Number(this.filteredTypesSummary[e].policiesCount) ]);	   
-	                   typesRevPieChartData.push([(this.filteredTypesSummary[e].name), Number(floatData+"") ]);	               
+	                   typesPieChartData.push([this.filteredTypesSummary[e].name.toUpperCase(), Number(this.filteredTypesSummary[e].policiesCount) ]);	   
+	                   typesRevPieChartData.push([(this.filteredTypesSummary[e].name.toUpperCase()), Number(floatData+"") ]);	               
 	                }
 	               }
 	               typesPieChartData[0] = ["Insurance", "Policies"];
@@ -1048,8 +1048,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	                let companiesLength = this.filteredCompaniesSummary.length;
 	                for(let e=0;e<companiesLength;e++){
 	                let floatData = (parseFloat(this.filteredCompaniesSummary[e].totalPoliciesAmount)).toFixed(2);
-	                   companiesPieChartData.push([this.filteredCompaniesSummary[e].name, Number(this.filteredCompaniesSummary[e].policiesCount) ]);	   
-	                   companiesRevPieChartData.push([(this.filteredCompaniesSummary[e].name), Number(floatData+"") ]);	               
+	                   companiesPieChartData.push([this.filteredCompaniesSummary[e].name.toUpperCase(), Number(this.filteredCompaniesSummary[e].policiesCount) ]);	   
+	                   companiesRevPieChartData.push([(this.filteredCompaniesSummary[e].name.toUpperCase()), Number(floatData+"") ]);	               
 	                }
 	               }
 	               companiesPieChartData[0] = ["Company", "Policies"];

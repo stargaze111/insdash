@@ -90,6 +90,10 @@
 							<li class="pull-right switch panel-btn" [hidden]="(selectedOptionId==0&&selectedChartId==0)&&selectedCompanyId==0&&selectedInsuranceId==0">
 							   <button class="btn btn-block bg-pink waves-effect icon" type="submit" (click)="reset_clicked()"><i class="material-icons">clear_all</i>RESET</button>
 							</li>
+							<li class="form-line">
+							   <input type="text" class="form-control" name="exe_id" placeholder="Report Id" required="" autofocus="" aria-required="true" [(ngModel)]='exe_id'>
+							   <button class="btn btn-block bg-pink waves-effect icon" type="submit" (click)="triggerSearch()"><i class="material-icons">search</i>SEARCH</button>
+							</li>
                 </ul>
             </div>
            </div>

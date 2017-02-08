@@ -2,24 +2,13 @@
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="START TYPING...">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar">
+    <nav class="navbar navbar-default" style="background-color: #ff8080">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <span class="navbar-brand"><b>ANALYTICS DASHBOARD</b></span>
+                <span class="navbar-brand"  style="color:white">ANALYTICS DASHBOARD</span>
             </div>
         </div>
     </nav>
@@ -140,7 +129,7 @@
             </div>
 			<div class="container-fluid pull-right">
 				<div class="pull-right switch panel-switch-btn" [hidden]="selectedChartId==1">
-					<span class="m-r-10 font-12">REAL TIME</span>
+					<span class="m-r-10 font-13">REAL TIME</span>
 					<label>OFF<input type="checkbox" id="realtime" checked (click)="selectLive()"><span class="lever switch-col-cyan"></span>ON</label>
 				</div>
 				<div [hidden]="selectedChartId==0">

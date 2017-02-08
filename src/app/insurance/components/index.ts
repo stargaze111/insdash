@@ -55,7 +55,7 @@ import {
 })
 
 
-export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
+export class InsuranceDashboardComponent implements OnInit,OnChanges, OnDestroy {
 
     refreshFrequency = 5000;
     grandTotalConversion ="0%";
@@ -64,6 +64,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     grandTotalRevenue=0;
     grandTotalQuotes =0;
     grandTotalPolicies =0;
+    lastRefreshMilliseconds = (new Date()).getTime();
+    lastRefreshed = "1 second";
     totalPolicyAmount=0;
     totalQuotes=0;
     totalPolicies=0;
@@ -72,6 +74,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     selectedInsuranceId = 0;
     selectedChartId = 0;
     isLoaded=false;
+    searchSubscription = null;
     timerSubscription = null;
     toggoleShowHide = "visible";
     live = true;
@@ -277,16 +280,85 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     }
 
 
-    ngOnInit() {
-    
+timeSince (lastRefreshMilliseconds) {
+        var currentTime = (new Date()).getTime();
         
-        //initialize dropdowns
-        this.initializeDropdowns();
+        
+        if (lastRefreshMilliseconds == 0) {
+            lastRefreshMilliseconds = currentTime - 1000;
+        }
 
-        this.reset_clicked();
-
-
+        var seconds = Math.floor((currentTime - lastRefreshMilliseconds) / 1000);
+        
+        var interval = Math.floor(seconds / 31536000);
+        var tmpLastRefreshed = " ";
+        if (interval > 1) {
+            tmpLastRefreshed = tmpLastRefreshed+interval + " years";
+        }
+        else if (interval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed+interval + " year";
+        }
+        interval = Math.floor(seconds / 2592000);
+        if (interval > 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " months";
+        }
+        else if (interval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " month";
+        }
+        interval = Math.floor(seconds / 86400);
+        if (interval > 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " days";
+        }
+        else if (interval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " day";
+        }
+        interval = Math.floor(seconds / 3600);
+        if (interval > 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " hours";
+        }
+        else if (interval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " hour";
+        }
+        interval = Math.floor(seconds / 60);
+        if (interval > 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " minutes";
+        }
+        else if (interval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " minute";
+        }
+        interval = Math.floor(seconds);
+        if (interval > 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " seconds";
+        }
+        else if (interval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " second";
+        }else{
+            tmpLastRefreshed = tmpLastRefreshed + " " + 1 + " second";
+        }
+        
+        document.getElementById("refreshTime").innerHTML = "<i>REFRESHED "+tmpLastRefreshed+" ago</i>";
+        
+        this.subscribeToTimer();
     }
+
+
+subscribeToTimer(){
+  this.timerSubscription = Observable.timer(1000).first().subscribe(() => this.timeSince(this.lastRefreshMilliseconds));    
+}
+
+
+ngOnInit()
+{
+    console.log("inside ngOnInit");
+    //initialize dropdowns
+    this.initializeDropdowns();
+    this.subscribeToTimer();
+    
+    
+
+    this.reset_clicked();
+}
+
 
     initializeDropdowns() {
         this.search_options = Array < InsuranceDashboardSearchOption > ();
@@ -341,16 +413,16 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     selectInsuranceType(selectedInsurance) {
     
     try {
-            var style = document.getElementById("insurance" + selectedInsurance).style;
+            let style = document.getElementById("insurance" + selectedInsurance).style;
             if (style != null) {
                 if (style.backgroundColor == "") {
                     style.backgroundColor = "#D3D3D3";
-                    var noOfInsurances = this.insurance_types.length;
-                    for (var y = 0; y < noOfInsurances; y++) {
+                    let noOfInsurances = this.insurance_types.length;
+                    for (let y = 0; y < noOfInsurances; y++) {
                         if (y == selectedInsurance) {
                             continue;
                         }
-                        var style1 = document.getElementById("insurance" + y).style;
+                        let style1 = document.getElementById("insurance" + y).style;
                         if (style1 != null) {
                             style1.backgroundColor = "";
                         }
@@ -378,16 +450,16 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
  selectCompanyType(selectedCompany)
 {
     try {
-        var style = document.getElementById("company" + selectedCompany).style;
+        let style = document.getElementById("company" + selectedCompany).style;
         if (style != null) {
             if (style.backgroundColor == "") {
                 style.backgroundColor = "#D3D3D3";
-                var noOfCompanies = this.company_types.length;
-                for (var y = 0; y < noOfCompanies; y++) {
+                let noOfCompanies = this.company_types.length;
+                for (let y = 0; y < noOfCompanies; y++) {
                     if (y == selectedCompany) {
                         continue;
                     }
-                    var style1 = document.getElementById("company" + y).style;
+                    let style1 = document.getElementById("company" + y).style;
                     if (style1 != null) {
                         style1.backgroundColor = "";
                     }
@@ -433,16 +505,16 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     selectSearchOption(selectedOption) {
     
             try {
-                    var style = document.getElementById("history" + selectedOption).style;
+                    let style = document.getElementById("history" + selectedOption).style;
                     if (style != null) {
                         if (style.backgroundColor == "") {
                             style.backgroundColor = "#D3D3D3";
-                            var noOfOptions = this.search_options.length;
-                            for (var y = 0; y < noOfOptions; y++) {
+                            let noOfOptions = this.search_options.length;
+                            for (let y = 0; y < noOfOptions; y++) {
                                 if (y == selectedOption) {
                                     continue;
                                 }
-                                var style1 = document.getElementById("history" + y).style;
+                                let style1 = document.getElementById("history" + y).style;
                                 if (style1 != null) {
                                     style1.backgroundColor = "";
                                 }
@@ -488,7 +560,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	this.company_type = new InsuranceDashboardCompanyType(0, 'All');
 	this.chart_type = new InsuranceDashboardChartType(0, 'Main');  
 
-
+    this.lastRefreshMilliseconds = (new Date()).getTime();
+    this.lastRefreshed = "1 second";
           
           this.isLoaded = false;  
           this.fromMilliseconds="";
@@ -533,7 +606,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
    	let toTimeInMilliSeconds = -1;
    	if((this.selectedFromTime!=null)||(this.selectedToTime!=null)){
 	console.log('provided date range :'+this.selectedFromTime); 
-	 var currentDate = new Date();   	 
+	 let currentDate = new Date();   	 
 	 let fromTimeInMilliSeconds = currentDate.getTime();
 	 
 	 if((this.selectedFromTime!=null)){
@@ -557,7 +630,7 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
    	
    	   	          
            //start live dashboard with filters
-   	   var currentDate = new Date();
+   	   let currentDate = new Date();
    	    currentDate.setSeconds(0);
    	    let currentTimeInMilliSeconds = currentDate.getTime();
    	    this.globalCurrentTime = this.getTimestampString(currentDate);
@@ -661,7 +734,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	    }
 	    
 	    }
-   
+	    	   
+	
    }
 
 
@@ -673,8 +747,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	this.typesSummary=[];
 	this.companiesSummary=[];
 	this.responseData=null;
-
-        this.globalCurrentTime = this.getTimestampString(new Date());
+        
+       
         this.searchTransactionsSummary(selectedInsurance,selectedCompany, exeId);
         console.log('selectedOption :'+selectedOption);
         console.log('fromMilliseconds :'+this.fromMilliseconds);
@@ -727,7 +801,9 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
                 console.log(err);
             });    
             
-            
+           this.lastRefreshMilliseconds = (new Date()).getTime();
+	  console.log("lastRefreshMilliseconds ----------------------------------------- :"+this.lastRefreshMilliseconds);
+      
         if (this.live) {
             console.log('Subscribe from periodically refreshing data');
             this.subscribeToData(selectedOption, fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId);
@@ -791,19 +867,28 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         let currentTimeInMilliSeconds = currentDate.getTime();
         fromTimeInMilliSeconds = (currentTimeInMilliSeconds - (60000*1));
         //this.fromMilliseconds=fromTimeInMilliSeconds+"";
-        this.timerSubscription = Observable.timer(this.refreshFrequency).first().subscribe(() => this.searchTransactions(selectedOption,fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId));
+        this.searchSubscription = Observable.timer(this.refreshFrequency).first().subscribe(() => this.searchTransactions(selectedOption,fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,exeId));
     }
 
     
 
     unsubscribeToData(): void {
-        if (this.timerSubscription) {
-            this.timerSubscription.unsubscribe();
+        if (this.searchSubscription) {
+            this.searchSubscription.unsubscribe();
         }
+        
+       
+        
     }
 
     public ngOnDestroy(): void {
+    
         this.unsubscribeToData();
+        
+         if (this.timerSubscription) {
+		this.timerSubscription.unsubscribe();
+	 }
+        
     }
 
     ngOnChanges(changes: any) {
@@ -878,9 +963,9 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
         console.log('fromTimeInMilliSeconds :' + fromTimeInMilliSeconds);
                     
     	let isOnlyTimeRequired = false;
-    	var fromDay = (new Date(fromTimeInMilliSeconds)).getDate();
-    	var today = (new Date()).getDate();
-    	var noOfDataPoints = this.insuranceTransactions.length;
+    	let fromDay = (new Date(fromTimeInMilliSeconds)).getDate();
+    	let today = (new Date()).getDate();
+    	let noOfDataPoints = this.insuranceTransactions.length;
     	isOnlyTimeRequired=(fromDay==today);
     	
     	console.log('fromDay :'+fromDay);
@@ -901,14 +986,14 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
                 //check this later
                 if (item!=null&&item.modified != null) {                 
                     let dateInMilliSeconds = item.modified;       
-                    var now = new Date(dateInMilliSeconds);                
-                    var date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
-                    var time2 = [now.getHours(), now.getMinutes(), now.getSeconds()];
+                    let now = new Date(dateInMilliSeconds);                
+                    let date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
+                    let time2 = [now.getHours(), now.getMinutes(), now.getSeconds()];
     
     
                     // If seconds and minutes are less than 10, add a zero
-                    var time1 = [];
-                    for (var i = 0; i < 3; i++) {
+                    let time1 = [];
+                    for (let i = 0; i < 3; i++) {
     
                         if (time2[i] < 10) {
     
@@ -920,8 +1005,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
     
                     }
     
-                    var date1 = [];
-                    for (var i = 0; i < 3; i++) {
+                    let date1 = [];
+                    for (let i = 0; i < 3; i++) {
     
                         if (date2[i] < 10) {
     
@@ -993,23 +1078,23 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
           
             for (let r = 1; r < tempLineChartData.length; r++) {
                       if(isOnlyTimeRequired){
-                                   var dateTime = "";                               
+                                   let dateTime = "";                               
                       	       dateTime = tempLineChartData[r][0]+"";
-    	   		       var parts = dateTime.split(' ');
+    	   		       let parts = dateTime.split(' ');
     	   		       tempLineChartData[r][0] = parts[1]; 
                       }
             }
             
              if(tempLineChartData.length<=1){
 	                  totalQuotesCount=0;
-	                  var now = new Date(fromTimeInMilliSeconds);                
-	    	                          var date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
-	    	                          var time2 = [now.getHours(), now.getMinutes(), now.getSeconds()];
+	                  let now = new Date(fromTimeInMilliSeconds);                
+	    	                          let date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
+	    	                          let time2 = [now.getHours(), now.getMinutes(), now.getSeconds()];
 	    	          
 	    	          
 	    	                          // If seconds and minutes are less than 10, add a zero
-	    	                          var time1 = [];
-	    	                          for (var i = 0; i < 3; i++) {
+	    	                          let time1 = [];
+	    	                          for (let i = 0; i < 3; i++) {
 	    	          
 	    	                              if (time2[i] < 10) {
 	    	          
@@ -1021,8 +1106,8 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 	    	          
 	    	                          }
 	    	          
-	    	                          var date1 = [];
-	    	                          for (var i = 0; i < 3; i++) {
+	    	                          let date1 = [];
+	    	                          for (let i = 0; i < 3; i++) {
 	    	          
 	    	                              if (date2[i] < 10) {
 	    	          
@@ -1108,13 +1193,13 @@ export class InsuranceDashboardComponent implements OnChanges, OnDestroy {
 
 getTimestampString(now) : string{
 
-var date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
-                    var time2 = [now.getHours(), now.getMinutes(), now.getSeconds()];
+let date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
+                    let time2 = [now.getHours(), now.getMinutes(), now.getSeconds()];
     
     
                     // If seconds and minutes are less than 10, add a zero
-                    var time1 = [];
-                    for (var i = 0; i < 3; i++) {
+                    let time1 = [];
+                    for (let i = 0; i < 3; i++) {
     
                         if (time2[i] < 10) {
     
@@ -1126,8 +1211,8 @@ var date2 = [now.getFullYear(), now.getMonth()+1, now.getDate()];
     
                     }
     
-                    var date1 = [];
-                    for (var i = 0; i < 3; i++) {
+                    let date1 = [];
+                    for (let i = 0; i < 3; i++) {
     
                         if (date2[i] < 10) {
     
@@ -1144,13 +1229,16 @@ return  date1.join("-") + " " + time1.join(":");
 
 getTimeInMillisecondsString(now) : string{
 
-var parts = now.split(' ');
-var parts1 = parts[0].split('/');
-var parts2 = parts[1].split(':');
+let parts = now.split(' ');
+let parts1 = parts[0].split('/');
+let parts2 = parts[1].split(':');
 
 return  parts1.join("-") + " " + parts2.join(":")+":"+"00";
               
 }
+
+
+
 
 }
 

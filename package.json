@@ -48,7 +48,9 @@
     "express": "^4.13.4",
     "morgan": "^1.7.0",
     "adminbsb-materialdesign":"1.0.4",
-    "time-ago-pipe":"1.2.0"
+    "time-ago-pipe":"1.2.0",
+    "ng2-datetime-picker":"",
+    "jQuery":"1.7.4"
   },
   "devDependencies": {
     "concurrently": "^2.2.0",

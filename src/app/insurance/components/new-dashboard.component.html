@@ -14,7 +14,7 @@
     </div>
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar" style="opacity: 1">
+    <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
@@ -97,12 +97,12 @@
                             <ul id="search_menu"  class="ml-menu">
 							<li>
 							   <div class="pull-right col-xs-10 p-t-25">
-								  <input type="text" class="datetimepicker form-control" name="exe_id" placeholder="From Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedFromTime' data-dtp="dtp_waiUo">
+								  <input  type="datetime"  class="datetimepicker form-control" name="fromDate" placeholder="From Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedFromTime' data-dtp="dtp_waiUo">
 							   </div>
 							</li>
 							<li>
 							   <div class="pull-right col-xs-10 p-t-25">
-								  <input type="text" class="datetimepicker form-control" name="exe_id" placeholder="To Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedToTime' data-dtp="dtp_waiUo">
+								  <input  type="datetime"  class="datetimepicker form-control" name="toDate" placeholder="To Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedToTime' data-dtp="dtp_waiUo">
 							   </div>
 							</li>
 							<li>
@@ -132,17 +132,11 @@
         </aside>
         <!-- #END# Left Sidebar -->
     </section>
-
     <section class="content">
         <div class="container-fluid">
         <div class="container-fluid">
             <div class="block-header">
                 <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
-                <span class="pull-left m-r-10 font-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>REFRESHED AT <b>{{globalCurrentTime}}</b></i></span>
-				<span class="pull-left m-r-10 font-10" *ngIf="exe_id!=null" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{exe_id.toUpperCase()}}</i></span>
-				<span class="pull-left m-r-10 font-10" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{search_options[selectedOptionId].name.toUpperCase()}}</i></span>
-				<span class="pull-left m-r-10 font-10" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{company_types[selectedCompanyId].name.toUpperCase()}}</i></span>
-				<span class="pull-left m-r-10 font-10" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</i></span>
             </div>
 			<div class="container-fluid pull-right">
 				<div class="pull-right switch panel-switch-btn" [hidden]="selectedChartId==1">
@@ -155,10 +149,19 @@
 				</div>
 			</div>
         </div>
-         <div class="container-fluid">
+        <div class="container-fluid pull-left">
+            <div class="block-header">
+                <span id="refreshTime" class="pull-left m-r-10 font-10"></span>
+                <span class="pull-left m-r-10 font-10" *ngIf="exe_id!=null" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{exe_id.toUpperCase()}}</i></span>
+				<span class="pull-left m-r-10 font-10" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{search_options[selectedOptionId].name.toUpperCase()}}</i></span>
+				<span class="pull-left m-r-10 font-10" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{company_types[selectedCompanyId].name.toUpperCase()}}</i></span>
+				<span class="pull-left m-r-10 font-10" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</i></span>
+            </div>
+        </div>
+            <div class="container-fluid">
             <div class="block-header">
             </div>
-				<div [hidden]="selectedChartId==0">
+				<div>
 					<span class="m-r-10 font-12">&nbsp;</span>
 					<label>&nbsp;</label>
 				</div>

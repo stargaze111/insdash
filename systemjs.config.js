@@ -33,6 +33,8 @@
       'angular2-moment' : 'npm:angular2-moment',
       'moment':'npm:moment',
       'time-ago-pipe':'npm:time-ago-pipe',
+      'jQuery':'npm:jQuery',
+      'ng2-datetime-picker' : 'node_modules/ng2-datetime-picker/dist'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -68,10 +70,15 @@
 	                  main: './moment.js',
 	                  defaultExtension: 'js'
             },
+	'jQuery': {
+	                  main: './tmp/jquery.js',
+	                  defaultExtension: 'js'
+            },
       'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
-      }
+      },
+      'ng2-datetime-picker':  { main: 'ng2-datetime-picker.umd.js', defaultExtension: 'js' }
     }
   });
 })(this);

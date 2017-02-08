@@ -9,6 +9,7 @@ import { EmitterService }          from './emitter.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {TimeAgoPipe} from 'time-ago-pipe';
     JsonpModule,
     Ng2GoogleChartModule,
     AppRoutingModule,
-    InsuranceModule
+    InsuranceModule,
+    Ng2DatetimePickerModule
   ],
   declarations: [
     AppComponent,TimeAgoPipe

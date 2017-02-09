@@ -34,7 +34,8 @@
       'moment':'npm:moment',
       'time-ago-pipe':'npm:time-ago-pipe',
       'jQuery':'npm:jQuery',
-      'ng2-datetime-picker' : 'node_modules/ng2-datetime-picker/dist'
+      'ng2-datetime-picker' : 'node_modules/ng2-datetime-picker/dist',
+      'angular2-material-datepicker' : 'node_modules/angular2-material-datepicker'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -50,6 +51,10 @@
         defaultExtension: 'js'
       },
       'ng2-googlechart': {
+		  main: './index.js',
+	          defaultExtension: 'js'
+      },
+	'angular2-material-datepicker': {
 		  main: './index.js',
 	          defaultExtension: 'js'
       },

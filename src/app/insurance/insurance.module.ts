@@ -3,9 +3,10 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import {Ng2GoogleChartModule} from 'ng2-googlechart';
+import { DatepickerModule } from 'angular2-material-datepicker';
 import * as _ from "underscore";
 import { InsuranceDashboardComponent } from './components/index';
-
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 import { SearchInsuranceTransactionsService } from './services/transactions.service';
 
@@ -16,7 +17,9 @@ import { SearchInsuranceTransactionsService } from './services/transactions.serv
     FormsModule,
      HttpModule,
     JsonpModule,
-    Ng2GoogleChartModule
+    DatepickerModule,
+    Ng2GoogleChartModule,
+    Ng2DatetimePickerModule
   ],
   declarations: [    
     InsuranceDashboardComponent

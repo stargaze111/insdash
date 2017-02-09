@@ -28,6 +28,10 @@ export class SearchInsuranceTransactionsService {
      if(fromMilliseconds>=0){
         fromMilliSecondsStr = fromMilliseconds+"";
      }
+     
+     if(toMilliseconds>=0){
+             toMilliSecondsStr = toMilliseconds+"";
+     }
           if(selectedInsurance!=null&&selectedInsurance.toUpperCase()=='ALL'){
           	selectedInsurance="";
           }

@@ -13,12 +13,12 @@
         </div>
     </nav>
     <!-- #Top Bar -->
-    <section style="background-color: #ffe6e6">
+    <section style="background-color: #ffe6e6;" id="sidebarsection">
         <!-- Left Sidebar -->
-        <aside id="leftsidebar" class="sidebar" style="background-color: #ffe6e6">
+        <aside id="leftsidebar" class="sidebar" style="background-color: #ffe6e6;">
             <!-- Menu -->
             <div class="menu">
-<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 385px;"><ul class="list" style="height: 385px; overflow: hidden; width: auto;">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 385px;"><ul class="list" style="height: 385px; overflow: hidden; width: auto;">
                     <li class="active">
                         <a href="index.html" class="toggled waves-effect waves-block">
                             <i class="material-icons">home</i>
@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleDashboardMenu(this)">
+                        <a id="dashboard_menu_a" href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleDashboardMenu(this)">
                             <i class="material-icons">dashboard</i>
                             <span>DASHBOARD</span>
                         </a>
@@ -34,24 +34,24 @@
                             <li id="dashboard0" (click)="selectChartType(0)">
                                 <a href="javascript:void(0);">
                                 <i class="material-icons">trending_up</i>
-                                    <span>MAIN</span>
+                                    <a href="javascript:void(0);" class="font-12">MAIN</a>
                                 </a>
                             </li>
                             <li id="dashboard1" (click)="selectChartType(1)">
-                                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleHistoryMenu(this)">
+                                <a id="history_menu_a" href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleHistoryMenu(this)">
                                 <i class="material-icons">history</i>
-                                    <span>HISTORY</span>
+                                    <a href="javascript:void(0);" class="font-12">HISTORY</a>
                                 </a>
                                 <ul id="history_menu"  class="ml-menu">
                                    <li *ngFor="let search_option of search_options let i=index" id="history{{i}}" (click)="selectSearchOption(search_option.id)">
-								   		 <a href="javascript:void(0);">{{ search_option.name.toUpperCase() }}</a>
+								   		 <a href="javascript:void(0);" class="font-12">{{ search_option.name.toUpperCase() }}</a>
 									</li>
                                 </ul>
                             </li>
  </ul>
 </li>
                             <li>
-                                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleInsuranceMenu(this)">
+                                <a id="insurance_menu_a" href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleInsuranceMenu(this)">
                                 <i class="material-icons">
                                 verified_user
                                 </i>
@@ -59,12 +59,12 @@
                                 </a>
                                 <ul id="insurance_menu"  class="ml-menu">
                                    <li *ngFor="let insurance_type of insurance_types let i=index" id="insurance{{i}}" (click)="selectInsuranceType(insurance_type.id)">
-								   		 <a href="javascript:void(0);">{{ insurance_type.name.toUpperCase() }}</a>
+								   		 <a href="javascript:void(0);" class="font-12">{{ insurance_type.name.toUpperCase() }}</a>
 									</li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleCompanyMenu(this)">
+                                <a id="company_menu_a" href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleCompanyMenu(this)">
                                 <i class="material-icons">
                                 business
                                 </i>
@@ -72,12 +72,12 @@
                                 </a>
                                 <ul id="company_menu" class="ml-menu">
 									<li *ngFor="let company_type of company_types let i=index" id="company{{i}}" (click)="selectCompanyType(company_type.id); $event.style.background-color='blue';">
-										<a href="javascript:void(0);">{{ company_type.name.toUpperCase() }}</a>
+										<a href="javascript:void(0);" class="font-12">{{ company_type.name.toUpperCase() }}</a>
 									</li>
                                 </ul>
                             </li>
                             <li>
-							<a href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleSearchMenu(this)">
+							<a id="search_menu_a" href="javascript:void(0);" class="menu-toggle waves-effect waves-block" (click)="toggleSearchMenu(this)">
                                 <i class="material-icons">
                                 search
                                 </i>
@@ -86,12 +86,12 @@
                             <ul id="search_menu"  class="ml-menu">
 							<li>
 							   <div class="pull-right col-xs-10 p-t-25">
-								  <input  type="datetime"  class="datetimepicker form-control" name="fromDate" placeholder="From Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedFromTime' data-dtp="dtp_waiUo">
+								  <input  type="datetime" ng2-datetime-picker date-format="MM/DD/YYYY HH:mm" parse-format="YYYY-MM-DD HH:mm:ss"  class="datetimepicker form-control" name="fromDate" placeholder="From Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedFromTime'>
 							   </div>
 							</li>
 							<li>
 							   <div class="pull-right col-xs-10 p-t-25">
-								  <input  type="datetime"  class="datetimepicker form-control" name="toDate" placeholder="To Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedToTime' data-dtp="dtp_waiUo">
+								  <input  type="datetime" ng2-datetime-picker date-format="MM/DD/YYYY HH:mm" parse-format="YYYY-MM-DD HH:mm:ss"   class="datetimepicker form-control" name="toDate" placeholder="To Date/Time" required="" autofocus="" aria-required="true" [(ngModel)]='selectedToTime' data-dtp="dtp_waiUo">
 							   </div>
 							</li>
 							<li>
@@ -121,16 +121,16 @@
         </aside>
         <!-- #END# Left Sidebar -->
     </section>
-    <section class="content">
+    <section class="content" id="mainsection">
         <div class="container-fluid">
         <div class="container-fluid">
             <div class="block-header">
                 <h2 class="pull-left"><b>{{chart_types[selectedChartId].name.toUpperCase()}} DASHBOARD</b></h2>
             </div>
 			<div class="container-fluid pull-right">
-				<div class="pull-right switch panel-switch-btn" [hidden]="selectedChartId==1">
+				<div class="pull-right switch panel-switch-btn" [hidden]="selectedChartId==1||dateSearch==true">
 					<span class="m-r-10 font-13">REAL TIME</span>
-					<label>OFF<input type="checkbox" id="realtime" checked (click)="selectLive()"><span class="lever switch-col-cyan"></span>ON</label>
+					<label>OFF<input type="checkbox" id="realtime" [checked]="live" (click)="selectLive()"><span class="lever switch-col-cyan"></span>ON</label>
 				</div>
 				<div [hidden]="selectedChartId==0">
 					<span class="m-r-10 font-12">&nbsp;</span>
@@ -142,6 +142,8 @@
             <div class="block-header">
                 <span id="refreshTime" class="pull-left m-r-10 font-10"></span>
                 <span class="pull-left m-r-10 font-10" *ngIf="exe_id!=null" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{exe_id.toUpperCase()}}</i></span>
+                <span class="pull-left m-r-10 font-10" *ngIf="selectedFromTime!=null && selectedToTime!=null" >&nbsp;&nbsp;<i>{{selectedFromTime}}</i></span>
+                <span class="pull-left m-r-10 font-10" *ngIf="selectedToTime!=null" >&nbsp;<i>TO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{selectedToTime}}</i></span>
 				<span class="pull-left m-r-10 font-10" *ngIf="selectedOptionId>0 && selectedChartId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{search_options[selectedOptionId].name.toUpperCase()}}</i></span>
 				<span class="pull-left m-r-10 font-10" *ngIf="selectedCompanyId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{company_types[selectedCompanyId].name.toUpperCase()}}</i></span>
 				<span class="pull-left m-r-10 font-10" *ngIf="selectedInsuranceId>0" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>{{insurance_types[selectedInsuranceId].name.toUpperCase()}}</i></span>

@@ -57,9 +57,11 @@ import {
 
 export class InsuranceDashboardComponent implements OnInit,OnChanges, OnDestroy {
 
+   
     refreshFrequency = 5000;
     grandTotalConversion ="0%";
     totalConversion = "0%";
+    dateSearch=false;
     globalCurrentTime:string;
     grandTotalRevenue=0;
     grandTotalQuotes =0;
@@ -176,56 +178,83 @@ export class InsuranceDashboardComponent implements OnInit,OnChanges, OnDestroy 
         }
     }
 
+
+
+ 
+
     toggleDashboardMenu(value){
-    let style = (<HTMLInputElement>document.getElementById("dashboard_menu")).style;
+    let element = (<HTMLInputElement>document.getElementById("dashboard_menu"));
+    let style = element.style;
     if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
       style.display='block';
+      (<HTMLInputElement>document.getElementById("dashboard_menu_a")).classList.add('toggled');
+     
     }else {
       style.display='none';
+      //element.className="menu-toggle waves-effect waves-block";
+      (<HTMLInputElement>document.getElementById("dashboard_menu_a")).classList.remove('toggled');
+     
     }
+     
+     
       
     }
     
     
     toggleSearchMenu(value){
-    let style = (<HTMLInputElement>document.getElementById("search_menu")).style;
+    let element = (<HTMLInputElement>document.getElementById("search_menu"));
+    let style = element.style;
     if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
       style.display='block';
+      //element.className="menu-toggle waves-effect waves-block toggled";
+      (<HTMLInputElement>document.getElementById("search_menu_a")).classList.add('toggled');
     }else {
       style.display='none';
+      (<HTMLInputElement>document.getElementById("search_menu_a")).classList.remove('toggled');
     }
+      
       
     }
     
     toggleHistoryMenu(value){
-    let style = (<HTMLInputElement>document.getElementById("history_menu")).style;
+    let element = (<HTMLInputElement>document.getElementById("history_menu"));
+    let style = element.style;
     if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
       style.display='block';
+      (<HTMLInputElement>document.getElementById("history_menu_a")).classList.add('toggled');
     }else {
       style.display='none';
+      (<HTMLInputElement>document.getElementById("history_menu_a")).classList.remove('toggled');
     }
+      
       
     }    
     
     toggleInsuranceMenu(value){
-    let style = (<HTMLInputElement>document.getElementById("insurance_menu")).style;
+    let element = (<HTMLInputElement>document.getElementById("insurance_menu"));
+    let style = element.style;
     if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
       style.display='block';
+      (<HTMLInputElement>document.getElementById("insurance_menu_a")).classList.add('toggled');
     }else {
       style.display='none';
+      (<HTMLInputElement>document.getElementById("insurance_menu_a")).classList.remove('toggled');
     }
+      
     
     }   
     
     toggleCompanyMenu(value){
-    let style = (<HTMLInputElement>document.getElementById("company_menu")).style;
-    
+    let element = (<HTMLInputElement>document.getElementById("company_menu"));
+    let style = element.style;
     if(style.display==null||style.display=='none'||style.display==''||style.display==' '||style.display==undefined){
       style.display='block';
+      (<HTMLInputElement>document.getElementById("company_menu_a")).classList.add('toggled');
     }else {
       style.display='none';
+      (<HTMLInputElement>document.getElementById("company_menu_a")).classList.remove('toggled');
     }
-     
+      
     }      
 
     drawFilteredGraph() {
@@ -298,45 +327,47 @@ timeSince (lastRefreshMilliseconds) {
         else if (interval == 1) {
             tmpLastRefreshed = tmpLastRefreshed+interval + " year";
         }
-        interval = Math.floor(seconds / 2592000);
-        if (interval > 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " months";
+        let monthInterval = Math.floor(seconds / 2592000);
+        if (monthInterval > 1 && monthInterval<12) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + monthInterval + " months";
         }
-        else if (interval == 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " month";
+        else if (monthInterval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + monthInterval + " month";
         }
-        interval = Math.floor(seconds / 86400);
-        if (interval > 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " days";
+        let dayInterval = Math.floor(seconds / 86400);
+        if (dayInterval > 1 && dayInterval<31) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + dayInterval + " days";
         }
-        else if (interval == 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " day";
+        else if (dayInterval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + dayInterval + " day";
         }
-        interval = Math.floor(seconds / 3600);
-        if (interval > 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " hours";
+       let  hourInterval = Math.floor(seconds / 3600);
+        if (hourInterval > 1 && hourInterval<24) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + hourInterval + " hours";
         }
-        else if (interval == 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " hour";
+        else if (hourInterval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + hourInterval + " hour";
         }
-        interval = Math.floor(seconds / 60);
-        if (interval > 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " minutes";
+        let minInterval = Math.floor(seconds / 60);
+        if (minInterval > 1 && minInterval<60) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + minInterval + " minutes";
         }
-        else if (interval == 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " minute";
+        else if (minInterval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + minInterval + " minute";
         }
-        interval = Math.floor(seconds);
-        if (interval > 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " seconds";
+        let secInterval = Math.floor(seconds);
+        secInterval = secInterval%60;
+       
+        if (secInterval > 1 && secInterval<60) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + secInterval + " seconds";
         }
-        else if (interval == 1) {
-            tmpLastRefreshed = tmpLastRefreshed + " " + interval + " second";
+        else if (secInterval == 1) {
+            tmpLastRefreshed = tmpLastRefreshed + " " + secInterval + " second";
         }else{
             tmpLastRefreshed = tmpLastRefreshed + " " + 1 + " second";
         }
         
-        document.getElementById("refreshTime").innerHTML = "<i>REFRESHED "+tmpLastRefreshed+" ago</i>";
+        document.getElementById("refreshTime").innerHTML = "<i>REFRESHED "+tmpLastRefreshed.toUpperCase()+" AGO</i>";
         
         this.subscribeToTimer();
     }
@@ -544,6 +575,8 @@ ngOnInit()
 
     reset_clicked() {
           console.log('Reset Clicked ');
+	  
+	  this.dateSearch=false;
 	  this.grandTotalConversion ="0%";
 	  this.totalConversion = "0%";          
 	  this.totalPolicyAmount=0; 
@@ -559,9 +592,9 @@ ngOnInit()
 	this.insurance_type = new InsuranceDashboardInsuranceType(0, 'All');
 	this.company_type = new InsuranceDashboardCompanyType(0, 'All');
 	this.chart_type = new InsuranceDashboardChartType(0, 'Main');  
-
-    this.lastRefreshMilliseconds = (new Date()).getTime();
-    this.lastRefreshed = "1 second";
+        
+	this.lastRefreshMilliseconds = (new Date()).getTime();
+	this.lastRefreshed = "1 second";
           
           this.isLoaded = false;  
           this.fromMilliseconds="";
@@ -570,6 +603,33 @@ ngOnInit()
           this.selectedToTime=new Date();
           this.selectedFromTime=null;
           this.selectedToTime=null;
+          
+          let element1 = (<HTMLInputElement>document.getElementById("dashboard_menu"));
+          let style1 = element1.style;
+          style1.display = "none";
+          (<HTMLInputElement>document.getElementById("dashboard_menu_a")).classList.remove('toggled');
+          
+          
+          let element2 = (<HTMLInputElement>document.getElementById("search_menu"));
+          let style2 = element2.style;
+          style2.display = "none";
+          (<HTMLInputElement>document.getElementById("search_menu_a")).classList.remove('toggled');
+          
+          let element3 = (<HTMLInputElement>document.getElementById("history_menu"));
+          let style3 = element3.style;
+          style3.display = "none";
+          (<HTMLInputElement>document.getElementById("history_menu_a")).classList.remove('toggled');
+          
+          let element4 = (<HTMLInputElement>document.getElementById("insurance_menu"));
+          let style4 = element4.style;
+          style4.display = "none";
+          (<HTMLInputElement>document.getElementById("insurance_menu_a")).classList.remove('toggled');
+          
+          let element5 = (<HTMLInputElement>document.getElementById("company_menu"));
+          let style5 = element5.style;
+          style5.display = "none";
+          (<HTMLInputElement>document.getElementById("company_menu_a")).classList.remove('toggled');
+          
           this.unsubscribeToData();
           this.triggerSearch();
 
@@ -621,13 +681,15 @@ ngOnInit()
 	 	    this.toMilliseconds = toTimeInMilliSeconds+"";
 	 }
 	 
-
+	 this.dateSearch=true;
+	 this.selectedChartId=1;
+         this.live=false;
    	 this.searchTransactions(this.selectedOptionId,fromTimeInMilliSeconds,toTimeInMilliSeconds,selectedInsurance,selectedCompany,null);
          console.log('Subscribe for periodically refreshing data');
         
    	  
    	}else{
-   	
+   	   this.dateSearch=false;
    	   	          
            //start live dashboard with filters
    	   let currentDate = new Date();
